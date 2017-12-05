@@ -23,13 +23,6 @@ public class RoomController {
     @Autowired
     DomainBean<Room> roomBean;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    @ResponseBody
-    ResponseEntity<Room> create(@RequestBody Room room) {
-        // create room
-        return new ResponseEntity<>(roomBean.create(), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     ResponseEntity<Room> read(@PathVariable("id") String id) {
@@ -42,26 +35,6 @@ public class RoomController {
     ResponseEntity<List<Room>> readAll() {
 
         return new ResponseEntity<>(roomBean.findAll(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    @ResponseBody
-    ResponseEntity<Room> update(@PathVariable("id") String id, @RequestBody Room room) {
-        // get the room and replace it with the incoming object
-        return new ResponseEntity<>(roomBean.update(id, room), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
-    @ResponseBody
-    ResponseEntity<Room> patch(@PathVariable("id") String id, @RequestBody Room room) {
-        // get the room and patch just the field that isn't null
-        return null;
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    void delete(@PathVariable("id") String id) {
-        roomBean.delete(id);
     }
 
 }
