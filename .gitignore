@@ -1,1 +1,6 @@
 /booking-frontend/target/
+/booking-domain-beans/target/
+/booking-backend/target/
+/booking-entities/target/
+/booking-dao/target/
+/booking-controllers/target/

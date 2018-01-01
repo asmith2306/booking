@@ -5,14 +5,13 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
  * @author asmith
  */
 @Entity
-public class Person implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue
