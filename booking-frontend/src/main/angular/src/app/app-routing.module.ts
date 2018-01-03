@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BookingsComponent} from "./bookings/bookings.component";
+import {BookingsDashboardComponent} from "./bookings-dashboard/bookings-dashboard.component";
 
 const routes: Routes = [
-    {path: 'bookings', component: BookingsComponent},
-    {path: '', redirectTo: '/bookings', pathMatch: 'full'}
+    {path: 'bookings-dashboard', component: BookingsDashboardComponent},
+    {path: '', redirectTo: '/bookings-dashboard', pathMatch: 'full'}
 ];
 
 @NgModule({
