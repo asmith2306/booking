@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {MatTableDataSource} from "@angular/material";
+import {Booking} from "../../models/Booking";
 
 @Component({
     selector: 'app-bookings-list',
@@ -7,11 +8,21 @@ import {MatTableDataSource} from "@angular/material";
     styleUrls: ['./bookings-list.component.css']
 })
 export class BookingsListComponent implements OnInit {
-    displayedColumns = ['position', 'name', 'weight', 'symbol'];
-    dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+
+    @Input()
+    bookings: Array<Booking>;
+    displayedColumns = ['checkInDate', 'checkOutDate', 'numberOfAdults', 'numberOfChildren', 'edit'];
+    dataSource: MatTableDataSource<Booking>;
+
     constructor() {}
 
     ngOnInit() {
+        console.log(this.bookings)
+        this.dataSource = new MatTableDataSource<Booking>(this.bookings);
+    }
+
+    onClickEditBooking(id: string) {
+        console.log(id)
     }
 
 }

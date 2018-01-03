@@ -14,4 +14,8 @@ export class BookingsService {
         return this.http.get<Array<Booking>>(this.baseUrl);
     }
 
+    get(id: string): Observable<Booking> {
+        return this.http.get<Booking>(this.baseUrl + "/" + id);
+    }
+
 }
