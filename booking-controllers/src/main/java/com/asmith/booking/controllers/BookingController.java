@@ -22,7 +22,7 @@ public class BookingController {
     @Autowired
     DomainBean<Booking> bookingBean;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<Booking> create(@RequestBody Booking booking) {
         // create booking
         return new ResponseEntity<>(bookingBean.create(), HttpStatus.OK);
@@ -34,7 +34,7 @@ public class BookingController {
         return new ResponseEntity<>(bookingBean.find(id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<List<Booking>> readAll() {
 
         return new ResponseEntity<>(bookingBean.findAll(), HttpStatus.OK);
