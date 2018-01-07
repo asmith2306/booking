@@ -18,4 +18,15 @@ export class BookingsService {
         return this.http.get<Booking>(this.baseUrl + "/" + id);
     }
 
+
+    create(): Observable<Booking> {
+        return this.http.post<Booking>(this.baseUrl + "/", new Booking());
+    }
+
+    delete(id: string): Observable<Object> {
+        return this.http.delete(this.baseUrl + "/" + id);
+    }
+
+
 }
+

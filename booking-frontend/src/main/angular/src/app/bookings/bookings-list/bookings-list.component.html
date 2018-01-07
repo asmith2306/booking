@@ -28,8 +28,14 @@
         </ng-container>
 
         <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef> # Edit </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let booking"> <mat-icon appClickableIndicator (click)="onClickEditBooking(booking.id)">mode_edit</mat-icon></mat-cell>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let booking"> <mat-icon appClickableIndicator (click)="onClickDeleteBooking(booking.id)">delete</mat-icon></mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

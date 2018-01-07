@@ -1,7 +1,9 @@
 <app-bookings-list [bookings]="bookings"></app-bookings-list>
 
-<div>Placeholder create booking</div>
-
-<div>Placeholder edit booking</div>
-
 <div>Placeholder delete booking</div>
+
+<div class="add-booking-button">
+    <button matTooltip="Add booking" matTooltipPosition="above" mat-fab color="primary" (click)="addBooking()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

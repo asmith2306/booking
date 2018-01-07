@@ -12,6 +12,7 @@ import {BookingsDashboardComponent} from "./bookings/dashboard/bookings-dashboar
 import {BookingsListComponent} from "./bookings/bookings-list/bookings-list.component";
 import {BookingsResolver} from "./bookings/bookings-resolver";
 import { EditBookingComponent } from './bookings/edit-booking/edit-booking.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { EditBookingComponent } from './bookings/edit-booking/edit-booking.compo
         FlexLayoutModule,
         AppRoutingModule,
         CustomMaterialModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [BookingsService, BookingsResolver],
     schemas:[CUSTOM_ELEMENTS_SCHEMA],

@@ -10,7 +10,7 @@ import {ActivatedRoute, Router, Params} from "@angular/router";
 })
 export class EditBookingComponent implements OnInit {
 
-    booking: Booking;
+    booking: Booking = new Booking();
 
     constructor(private route: ActivatedRoute, private router: Router,
         private bookingsService: BookingsService) {}
@@ -22,9 +22,13 @@ export class EditBookingComponent implements OnInit {
                 this.bookingsService.get(id)
                     .subscribe(booking => {
                         this.booking = booking;
-                        console.log(this.booking);
                     });
             }
         });
     }
+
+    cancelEdit() {
+        this.router.navigate(['/']);
+    }
+
 }

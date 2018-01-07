@@ -1,6 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {MatTableDataSource} from "@angular/material";
 import {Booking} from "../../models/Booking";
+import {Router} from "@angular/router";
+import {BookingsService} from "../../rest/bookings.service";
 
 @Component({
     selector: 'app-bookings-list',
@@ -11,33 +13,25 @@ export class BookingsListComponent implements OnInit {
 
     @Input()
     bookings: Array<Booking>;
-    displayedColumns = ['checkInDate', 'checkOutDate', 'numberOfAdults', 'numberOfChildren', 'edit'];
+    displayedColumns = ['checkInDate', 'checkOutDate', 'numberOfAdults', 'numberOfChildren', 'edit', 'delete'];
     dataSource: MatTableDataSource<Booking>;
 
-    constructor() {}
+    constructor(private router: Router, private bookingService: BookingsService) {}
 
     ngOnInit() {
-        console.log(this.bookings)
         this.dataSource = new MatTableDataSource<Booking>(this.bookings);
     }
 
     onClickEditBooking(id: string) {
-        console.log(id)
+        this.router.navigate(['edit-booking', id])
+    }
+
+    onClickDeleteBooking(id: string) {
+        this.bookingService.delete(id).subscribe(() => {
+            this.bookingService.getAll().subscribe(bookings => {
+                this.dataSource = new MatTableDataSource<Booking>(bookings);
+            })
+        });
     }
 
 }
-
-export interface Element {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'}
-];

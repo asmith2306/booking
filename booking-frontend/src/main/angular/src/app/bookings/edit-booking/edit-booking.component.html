@@ -1,45 +1,55 @@
-<p>
-    edit-booking works!
-</p>
-
 <mat-card>
-    <div fxLayout>
-        <div  fxFlex="0 0 33">
-            <mat-form-field >
-                <input matInput [matDatepicker]="checkInDatepicker" placeholder="Check in date">
-                       <mat-datepicker-toggle matSuffix [for]="checkInDatepicker"></mat-datepicker-toggle>
-                <mat-datepicker #checkInDatepicker></mat-datepicker>
-            </mat-form-field>
+    <form (ngSubmit)="onSubmit()" #bookingForm="ngForm">
+        <div fxLayout>
+            <div  fxFlex="0 0 33">
+                <mat-form-field >
+                    <input matInput name="checkInDate" [(ngModel)]="booking.checkInDate" [matDatepicker]="checkInDatepicker" placeholder="Check in date">
+                    <mat-datepicker-toggle matSuffix [for]="checkInDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkInDatepicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="0 0 33">
+                <mat-form-field >
+                    <input matInput name="checkOutDate" [(ngModel)]="booking.checkOutDate" [matDatepicker]="checkOutDatepicker" placeholder="Check out date">
+                    <mat-datepicker-toggle matSuffix [for]="checkOutDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkOutDatepicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="0 0 33">
+                room type placeholder
+            </div>
         </div>
 
-        <div fxFlex="0 0 33">
-            <mat-form-field >
-                <input matInput [matDatepicker]="checkOutDatepicker" placeholder="Check out date">
-                       <mat-datepicker-toggle matSuffix [for]="checkOutDatepicker"></mat-datepicker-toggle>
-                <mat-datepicker #checkOutDatepicker></mat-datepicker>
-            </mat-form-field>
+        <div fxLayout>
+            <div fxFlex="0 0 33">
+                <mat-form-field>
+                    <input matInput placeholder="Number of adults" name="numberOfAdults"
+                           [(ngModel)]="booking.numberOfAdults">
+                </mat-form-field>
+            </div>
+            <div fxFlex="0 0 33">
+                <mat-form-field>
+                    <input matInput placeholder="Number of children" name="numberOfChildren"
+                           [(ngModel)]="booking.numberOfChildren">
+                </mat-form-field>
+            </div>
+            <div fxFlex="0 0 33">
+                <!-- spare for another input-->
+            </div>
         </div>
 
-        <div fxFlex="0 0 33">
-            room type placeholder
-        </div>
-    </div>
 
-    <div fxLayout>
-        <div fxFlex="0 0 33">
-            <mat-form-field>
-                <input matInput placeholder="Number of adults" value="">
-            </mat-form-field>
+
+        <div class="cancel-button">
+            <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
         </div>
-        <div fxFlex="0 0 33">
-            <mat-form-field>
-                <input matInput placeholder="Number of children" value="">
-            </mat-form-field>
+        <div class="submit-button">
+            <button mat-raised-button color="primary" type="submit">Submit</button>
         </div>
-        <div fxFlex="0 0 33">
-            <!-- spare for another input-->
-        </div>
-    </div>
+
+    </form>
 </mat-card>
 
 
