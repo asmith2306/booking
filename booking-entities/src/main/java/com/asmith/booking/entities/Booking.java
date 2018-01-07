@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -31,7 +30,7 @@ public class Booking implements Serializable {
     @JsonIgnoreProperties("booking")
     private List<Room> rooms;
 
-    private Integer numberOfAdults;
+    private Integer numberOfAdults = 1; // must have at least 1 adult!
 
     private Integer numberOfChildren;
 
