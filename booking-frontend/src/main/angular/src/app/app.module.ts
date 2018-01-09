@@ -13,6 +13,7 @@ import {BookingsListComponent} from "./bookings/bookings-list/bookings-list.comp
 import {BookingsResolver} from "./bookings/bookings-resolver";
 import { EditBookingComponent } from './bookings/edit-booking/edit-booking.component';
 import {FormsModule} from "@angular/forms";
+import {BookingResolver} from "./bookings/booking-resolver";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,7 @@ import {FormsModule} from "@angular/forms";
         HttpClientModule,
         FormsModule
     ],
-    providers: [BookingsService, BookingsResolver],
+    providers: [BookingsService, BookingsResolver, BookingResolver],
     schemas:[CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

@@ -10,17 +10,20 @@ export class BookingsService {
 
     constructor(private http: HttpClient) {}
 
-    getAll(): Observable<Booking[]> {
-        return this.http.get<Array<Booking>>(this.baseUrl);
+    create(): Observable<Booking> {
+        return this.http.post<Booking>(this.baseUrl + "/", new Booking());
     }
 
     get(id: string): Observable<Booking> {
         return this.http.get<Booking>(this.baseUrl + "/" + id);
     }
 
+    getAll(): Observable<Booking[]> {
+        return this.http.get<Array<Booking>>(this.baseUrl);
+    }
 
-    create(): Observable<Booking> {
-        return this.http.post<Booking>(this.baseUrl + "/", new Booking());
+    update(booking: Booking): Observable<Booking> {
+        return this.http.put<Booking>(this.baseUrl + "/" + booking.id, booking);
     }
 
     delete(id: string): Observable<Object> {

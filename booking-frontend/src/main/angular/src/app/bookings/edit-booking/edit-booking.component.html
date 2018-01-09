@@ -3,7 +3,8 @@
         <div fxLayout>
             <div  fxFlex="0 0 33">
                 <mat-form-field >
-                    <input matInput name="checkInDate" [(ngModel)]="booking.checkInDate" [matDatepicker]="checkInDatepicker" placeholder="Check in date">
+                    <input matInput name="checkInDate" [(ngModel)]="booking.checkInDate"
+                           [matDatepicker]="checkInDatepicker" placeholder="Check in date" required>
                     <mat-datepicker-toggle matSuffix [for]="checkInDatepicker"></mat-datepicker-toggle>
                     <mat-datepicker #checkInDatepicker></mat-datepicker>
                 </mat-form-field>
@@ -11,7 +12,8 @@
 
             <div fxFlex="0 0 33">
                 <mat-form-field >
-                    <input matInput name="checkOutDate" [(ngModel)]="booking.checkOutDate" [matDatepicker]="checkOutDatepicker" placeholder="Check out date">
+                    <input matInput name="checkOutDate" [(ngModel)]="booking.checkOutDate"
+                           [matDatepicker]="checkOutDatepicker" placeholder="Check out date" required>
                     <mat-datepicker-toggle matSuffix [for]="checkOutDatepicker"></mat-datepicker-toggle>
                     <mat-datepicker #checkOutDatepicker></mat-datepicker>
                 </mat-form-field>
@@ -26,7 +28,7 @@
             <div fxFlex="0 0 33">
                 <mat-form-field>
                     <input matInput placeholder="Number of adults" name="numberOfAdults"
-                           [(ngModel)]="booking.numberOfAdults">
+                           [(ngModel)]="booking.numberOfAdults" required>
                 </mat-form-field>
             </div>
             <div fxFlex="0 0 33">
@@ -46,7 +48,7 @@
             <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
         </div>
         <div class="submit-button">
-            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled()">Submit</button>
         </div>
 
     </form>
