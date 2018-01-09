@@ -47,7 +47,6 @@ public class BookingDomainBean implements DomainBean<Booking> {
         bookingToUpdate.setNumberOfAdults(booking.getNumberOfAdults());
         bookingToUpdate.setNumberOfChildren(booking.getNumberOfChildren());
 
-//        bookingToUpdate.getRooms().clear();
         List<Room> roomsToUpdate = new ArrayList<>();
 
         if (null != booking.getRooms()) {
