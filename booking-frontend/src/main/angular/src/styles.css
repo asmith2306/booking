@@ -1,2 +1,15 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+.mat-simple-snackbar{
+    display: block !important;
+}
+
+.mat-snack-bar-handset{
+    width: auto !important;
+}
+
+.mat-snack-bar-container{
+    width: 20% !important;
+    text-align: center !important;
+}

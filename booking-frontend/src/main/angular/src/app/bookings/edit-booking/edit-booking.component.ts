@@ -3,6 +3,7 @@ import {Booking} from "../../models/Booking";
 import {BookingsService} from "../../rest/bookings.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Room, RoomType} from "../../models/Room";
 
 @Component({
     selector: 'app-edit-booking',
@@ -12,12 +13,16 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class EditBookingComponent implements OnInit {
 
     booking: Booking = new Booking();
+    allRoomTypes: Array<string> = new Array<string>();
+    availableRoomTypes: Array<string> = new Array<string>();
 
     constructor(private route: ActivatedRoute, private router: Router,
         private bookingsService: BookingsService, private snackBar: MatSnackBar) {}
 
     ngOnInit() {
         this.booking = this.route.snapshot.data["booking"]
+        this.allRoomTypes = this.route.snapshot.data["allRoomTypes"]
+        this.availableRoomTypes = this.route.snapshot.data["availableRoomTypes"]
     }
 
     cancelEdit() {
@@ -42,6 +47,10 @@ export class EditBookingComponent implements OnInit {
             this.snackBar.open("Booking saved", '', {'duration': 2000});
             this.router.navigate(['/']);
         });
+    }
+
+    checkUnavailable(roomType: string) {
+        return !this.availableRoomTypes.includes(roomType);
     }
 
 }

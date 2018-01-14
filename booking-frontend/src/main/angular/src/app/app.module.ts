@@ -10,10 +10,13 @@ import {BookingsService} from "./rest/bookings.service";
 import {ClickableIndicatorDirective} from "./directives/clickable-indicator.directive";
 import {BookingsDashboardComponent} from "./bookings/dashboard/bookings-dashboard.component";
 import {BookingsListComponent} from "./bookings/bookings-list/bookings-list.component";
-import {BookingsResolver} from "./bookings/bookings-resolver";
-import { EditBookingComponent } from './bookings/edit-booking/edit-booking.component';
+import {BookingsResolver} from "./bookings/resolvers/bookings-resolver";
+import {EditBookingComponent} from './bookings/edit-booking/edit-booking.component';
 import {FormsModule} from "@angular/forms";
-import {BookingResolver} from "./bookings/booking-resolver";
+import {BookingResolver} from "./bookings/resolvers/booking-resolver";
+import {AllRoomTypesResolver} from "./bookings/resolvers/all-room-types-resolver";
+import {AvailableRoomTypesResolver} from "./bookings/resolvers/available-room-types-resolver";
+import {RoomsService} from "./rest/rooms.service";
 
 @NgModule({
     declarations: [
@@ -32,8 +35,8 @@ import {BookingResolver} from "./bookings/booking-resolver";
         HttpClientModule,
         FormsModule
     ],
-    providers: [BookingsService, BookingsResolver, BookingResolver],
-    schemas:[CUSTOM_ELEMENTS_SCHEMA],
+    providers: [BookingsService, BookingsResolver, BookingResolver, RoomsService, AllRoomTypesResolver, AvailableRoomTypesResolver],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

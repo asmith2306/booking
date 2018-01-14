@@ -20,38 +20,45 @@
             </div>
 
             <div fxFlex="0 0 33">
-                room type placeholder
-            </div>
-        </div>
-
-        <div fxLayout>
-            <div fxFlex="0 0 33">
                 <mat-form-field>
-                    <input matInput placeholder="Number of adults" name="numberOfAdults"
-                           [(ngModel)]="booking.numberOfAdults" required>
-                </mat-form-field>
-            </div>
-            <div fxFlex="0 0 33">
-                <mat-form-field>
-                    <input matInput placeholder="Number of children" name="numberOfChildren"
-                           [(ngModel)]="booking.numberOfChildren">
-                </mat-form-field>
-            </div>
-            <div fxFlex="0 0 33">
-                <!-- spare for another input-->
-            </div>
+                    <mat-select placeholder="Room type">
+                        <mat-option *ngFor="let roomType of allRoomTypes" [disabled]="checkUnavailable(roomType)" [value]="roomType">
+                            {{ roomType }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+    </div>
+
+    <div fxLayout>
+        <div fxFlex="0 0 33">
+            <mat-form-field>
+                <input matInput placeholder="Number of adults" name="numberOfAdults"
+                       [(ngModel)]="booking.numberOfAdults" required>
+            </mat-form-field>
+        </div>
+        <div fxFlex="0 0 33">
+            <mat-form-field>
+                <input matInput placeholder="Number of children" name="numberOfChildren"
+                       [(ngModel)]="booking.numberOfChildren">
+            </mat-form-field>
+        </div>
+        <div fxFlex="0 0 33">
+            <!-- spare for another input-->
+        </div>
+    </div>
 
 
-
+    <div fxLayout fxLayoutGap="25px">
         <div class="cancel-button">
             <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
         </div>
         <div class="submit-button">
             <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled()">Submit</button>
         </div>
+    </div>
 
-    </form>
+</form>
 </mat-card>
 
 

@@ -6,16 +6,16 @@ import {
     Router, Resolve, RouterStateSnapshot,
     ActivatedRouteSnapshot
 } from '@angular/router';
-import {BookingsService} from "../rest/bookings.service";
-import {Booking} from "../models/Booking";
+import {RoomsService} from "../../rest/rooms.service";
 
 @Injectable()
-export class BookingsResolver implements Resolve<Array<Booking>> {
-    constructor(private bookingService: BookingsService, private router: Router) {}
+export class AvailableRoomTypesResolver implements Resolve<Array<string>> {
+    constructor(private roomService: RoomsService, private router: Router) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Booking[]> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<string>> {
         // api will return an empty array if there are no bookings so safe to
         // to not do a check for them
-        return this.bookingService.getAll(); 
+        return this.roomService.getAllAvailableRoomTypes();
     }
 }
+

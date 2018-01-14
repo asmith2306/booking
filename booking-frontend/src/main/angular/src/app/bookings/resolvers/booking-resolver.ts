@@ -4,11 +4,10 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {
     Router, Resolve, RouterStateSnapshot,
-    ActivatedRouteSnapshot,
-    Params
+    ActivatedRouteSnapshot
 } from '@angular/router';
-import {BookingsService} from "../rest/bookings.service";
-import {Booking} from "../models/Booking";
+import {BookingsService} from "../../rest/bookings.service";
+import {Booking} from "../../models/Booking";
 
 @Injectable()
 export class BookingResolver implements Resolve<Booking> {

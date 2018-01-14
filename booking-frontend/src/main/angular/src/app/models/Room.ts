@@ -6,7 +6,7 @@ export class Room{
     booking:Booking;
 }
 
-enum RoomType {
+export enum RoomType {
     Single,
     Double,
     Deluxe,

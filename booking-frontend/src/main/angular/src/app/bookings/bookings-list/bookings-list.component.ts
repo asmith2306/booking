@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {MatTableDataSource} from "@angular/material";
+import {MatTableDataSource, MatSnackBar} from "@angular/material";
 import {Booking} from "../../models/Booking";
 import {Router} from "@angular/router";
 import {BookingsService} from "../../rest/bookings.service";
@@ -16,7 +16,7 @@ export class BookingsListComponent implements OnInit {
     displayedColumns = ['checkInDate', 'checkOutDate', 'numberOfAdults', 'numberOfChildren', 'edit', 'delete'];
     dataSource: MatTableDataSource<Booking>;
 
-    constructor(private router: Router, private bookingService: BookingsService) {}
+    constructor(private router: Router, private bookingService: BookingsService, private snackBar: MatSnackBar) {}
 
     ngOnInit() {
         this.dataSource = new MatTableDataSource<Booking>(this.bookings);
@@ -28,6 +28,7 @@ export class BookingsListComponent implements OnInit {
 
     onClickDeleteBooking(id: string) {
         this.bookingService.delete(id).subscribe(() => {
+            this.snackBar.open("Booking deleted", "", {duration: 2000});
             this.bookingService.getAll().subscribe(bookings => {
                 this.dataSource = new MatTableDataSource<Booking>(bookings);
             })
