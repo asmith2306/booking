@@ -1,12 +1,15 @@
 package com.asmith.booking.entities.embeddables;
 
+import com.asmith.booking.entities.serialisers.json.RoomTypeDeserialiser;
 import com.asmith.booking.entities.serialisers.json.RoomTypeSerialiser;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @author asmith
  */
 @JsonSerialize(using = RoomTypeSerialiser.class)
+@JsonDeserialize(using = RoomTypeDeserialiser.class)
 public enum RoomType {
     SINGLE("Single", 99.99, new String[]{"Bath towel", "Slippers", "Bathrobe", "Hairdryer"}),
     DOUBLE("Double", 119.99, new String[]{"Bath towels", "Slippers", "Bathrobes", "Hairdryer", "Iron", "Ironing board"}),
