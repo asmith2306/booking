@@ -15,4 +15,6 @@ public interface RoomRepository extends CrudRepository<Room, Long> {
 
     @Query(value = "SELECT * FROM ROOM where BOOKING_ID IS null", nativeQuery = true)
     public List<Room> findAvailableRooms();
+
+    public Room findRoomByBookingId(Long bookingId);
 }
