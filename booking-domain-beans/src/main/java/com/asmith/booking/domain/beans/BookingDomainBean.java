@@ -50,6 +50,11 @@ public class BookingDomainBean implements DomainBean<Booking> {
         List<Room> roomsToUpdate = new ArrayList<>();
 
         if (null != booking.getRooms()) {
+            Room previousRoom = roomRepo.findRoomByBookingId(Long.valueOf(id));
+            if (null != previousRoom) {
+                previousRoom.setBooking(null);
+                roomRepo.save(previousRoom);
+            }
             for (Room r : booking.getRooms()) {
                 Room room = roomRepo.findOne(r.getId());
                 room.setBooking(bookingToUpdate);

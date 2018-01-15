@@ -107,7 +107,7 @@ public class RoomDomainBeanImpl implements RoomDomainBean {
         Room room;
         List<RoomType> roomTypes = Collections.unmodifiableList(Arrays.asList(RoomType.values()));
         Random random = new Random();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             room = new Room();
             room.setRoomType(roomTypes.get(random.nextInt(roomTypes.size())));
             roomRepo.save(room);
