@@ -1,6 +1,6 @@
 import {Room} from "./Room";
 
-export class Booking {
+export interface Booking {
     id: number;
     checkInDate: Date; 
     checkOutDate: Date;

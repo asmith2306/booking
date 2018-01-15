@@ -6,13 +6,15 @@ import {EditBookingComponent} from "./bookings/edit-booking/edit-booking.compone
 import {BookingResolver} from "./bookings/resolvers/booking-resolver";
 import {AllRoomTypesResolver} from "./bookings/resolvers/all-room-types-resolver";
 import {AvailableRoomTypesResolver} from "./bookings/resolvers/available-room-types-resolver";
+import {AvailableRoomsResolver} from "./bookings/resolvers/available-rooms-resolver";
 
 const routes: Routes = [
     {
         path: 'bookings-dashboard',
         component: BookingsDashboardComponent,
         resolve: {
-            bookings: BookingsResolver
+            bookings: BookingsResolver,
+            availableRooms : AvailableRoomsResolver
         }
     },
     {

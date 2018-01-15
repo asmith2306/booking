@@ -3,7 +3,8 @@ import {Booking} from "../../models/Booking";
 import {BookingsService} from "../../rest/bookings.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Room, RoomType} from "../../models/Room";
+import {Room} from "../../models/Room";
+import {RoomsService} from "../../rest/rooms.service";
 
 @Component({
     selector: 'app-edit-booking',
@@ -12,17 +13,27 @@ import {Room, RoomType} from "../../models/Room";
 })
 export class EditBookingComponent implements OnInit {
 
-    booking: Booking = new Booking();
+    booking: Booking;
     allRoomTypes: Array<string> = new Array<string>();
     availableRoomTypes: Array<string> = new Array<string>();
+    selectedRoomType: string = "";
 
     constructor(private route: ActivatedRoute, private router: Router,
-        private bookingsService: BookingsService, private snackBar: MatSnackBar) {}
+        private bookingsService: BookingsService, private snackBar: MatSnackBar,
+        private roomsService: RoomsService) {}
 
     ngOnInit() {
         this.booking = this.route.snapshot.data["booking"]
+        if (this.bookingHasRooms(this.booking)) {
+            this.selectedRoomType = this.booking.rooms[0].roomType.name;
+        }
+
         this.allRoomTypes = this.route.snapshot.data["allRoomTypes"]
         this.availableRoomTypes = this.route.snapshot.data["availableRoomTypes"]
+    }
+
+    private bookingHasRooms(booking: Booking): boolean {
+        return booking.rooms.length > 0;
     }
 
     cancelEdit() {
@@ -41,16 +52,22 @@ export class EditBookingComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.booking);
-        this.bookingsService.update(this.booking).subscribe(booking => {
-            // show message and back to dashboard on success
-            this.snackBar.open("Booking saved", '', {'duration': 2000});
-            this.router.navigate(['/']);
+        this.roomsService.getNext(this.selectedRoomType).subscribe((nextRoom: Room) => {
+            this.booking.rooms = new Array<Room>();
+            this.booking.rooms.push(nextRoom);
+            console.log(this.booking);
+            this.bookingsService.update(this.booking).subscribe(booking => {
+                // show message and back to dashboard on success
+                this.snackBar.open("Booking saved", '', {'duration': 2000});
+                this.router.navigate(['/']);
+            });
         });
+
     }
 
     checkUnavailable(roomType: string) {
         return !this.availableRoomTypes.includes(roomType);
     }
+
 
 }

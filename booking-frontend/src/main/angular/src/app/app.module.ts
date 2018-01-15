@@ -17,6 +17,7 @@ import {BookingResolver} from "./bookings/resolvers/booking-resolver";
 import {AllRoomTypesResolver} from "./bookings/resolvers/all-room-types-resolver";
 import {AvailableRoomTypesResolver} from "./bookings/resolvers/available-room-types-resolver";
 import {RoomsService} from "./rest/rooms.service";
+import {AvailableRoomsResolver} from "./bookings/resolvers/available-rooms-resolver";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {RoomsService} from "./rest/rooms.service";
         HttpClientModule,
         FormsModule
     ],
-    providers: [BookingsService, BookingsResolver, BookingResolver, RoomsService, AllRoomTypesResolver, AvailableRoomTypesResolver],
+    providers: [BookingsService, BookingsResolver, BookingResolver, RoomsService,
+        AllRoomTypesResolver, AvailableRoomTypesResolver, AvailableRoomsResolver],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
