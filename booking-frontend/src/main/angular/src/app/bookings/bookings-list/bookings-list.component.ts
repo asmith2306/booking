@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {MatTableDataSource, MatSnackBar} from "@angular/material";
 import {Booking} from "../../models/Booking";
 import {Router} from "@angular/router";
@@ -15,6 +15,9 @@ export class BookingsListComponent implements OnInit {
     bookings: Array<Booking>;
     displayedColumns = ['checkInDate', 'checkOutDate', 'numberOfAdults', 'numberOfChildren', 'edit', 'delete'];
     dataSource: MatTableDataSource<Booking>;
+    
+    @Output()
+    bookingDeleted = new EventEmitter();
 
     constructor(private router: Router, private bookingService: BookingsService, private snackBar: MatSnackBar) {}
 
@@ -31,6 +34,7 @@ export class BookingsListComponent implements OnInit {
             this.snackBar.open("Booking deleted", "", {duration: 2000});
             this.bookingService.getAll().subscribe(bookings => {
                 this.dataSource = new MatTableDataSource<Booking>(bookings);
+                this.bookingDeleted.emit(true);
             })
         });
     }

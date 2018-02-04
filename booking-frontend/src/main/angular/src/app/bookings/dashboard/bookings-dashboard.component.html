@@ -1,4 +1,4 @@
-<app-bookings-list [bookings]="bookings"></app-bookings-list>
+<app-bookings-list (bookingDeleted)="bookingDeleted($event)" [bookings]="bookings"></app-bookings-list>
 
 <div class="add-booking-button" matTooltip="{{addButtonTooltipText}}">
     <button matTooltipPosition="above" mat-fab color="primary" (click)="addBooking()" disabled="{{!roomsAvailable}}">

@@ -26,7 +26,8 @@ const routes: Routes = [
             availableRoomTypes: AvailableRoomTypesResolver
         }
     },
-    {path: '', redirectTo: '/bookings-dashboard', pathMatch: 'full'}
+    {path: '', redirectTo: '/bookings-dashboard', pathMatch: 'full'},
+    { path: '**', component: BookingsDashboardComponent }
 ];
 
 @NgModule({

@@ -36,5 +36,10 @@ export class BookingsDashboardComponent implements OnInit {
             this.router.navigate(['edit-booking', booking.id]);
         })
     }
+    
+    bookingDeleted(event){
+        this.roomsAvailable = true;
+        this.addButtonTooltipText = "Add booking";
+    }
 
 }

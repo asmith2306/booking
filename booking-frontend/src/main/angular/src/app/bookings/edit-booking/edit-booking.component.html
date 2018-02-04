@@ -23,42 +23,42 @@
                 <mat-form-field>
                     <mat-select placeholder="Room type" [(value)]="selectedRoomType">
                         <mat-option *ngFor="let roomType of allRoomTypes" [disabled]="checkUnavailable(roomType)" [value]="roomType">
-                            {{ roomType }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+                                {{ roomType }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
 
-    <div fxLayout>
-        <div fxFlex="0 0 33">
-            <mat-form-field>
-                <input matInput placeholder="Number of adults" name="numberOfAdults"
-                       [(ngModel)]="booking.numberOfAdults" required>
-            </mat-form-field>
+        <div fxLayout>
+            <div fxFlex="0 0 33">
+                <mat-form-field>
+                    <input matInput placeholder="Number of adults" name="numberOfAdults"
+                           [(ngModel)]="booking.numberOfAdults" required>
+                </mat-form-field>
+            </div>
+            <div fxFlex="0 0 33">
+                <mat-form-field>
+                    <input matInput placeholder="Number of children" name="numberOfChildren"
+                           [(ngModel)]="booking.numberOfChildren">
+                </mat-form-field>
+            </div>
+            <div fxFlex="0 0 33">
+                <!-- spare for another input-->
+            </div>
         </div>
-        <div fxFlex="0 0 33">
-            <mat-form-field>
-                <input matInput placeholder="Number of children" name="numberOfChildren"
-                       [(ngModel)]="booking.numberOfChildren">
-            </mat-form-field>
-        </div>
-        <div fxFlex="0 0 33">
-            <!-- spare for another input-->
-        </div>
-    </div>
 
 
-    <div fxLayout fxLayoutGap="25px">
-        <div class="cancel-button">
-            <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
+        <div fxLayout fxLayoutGap="25px">
+            <div class="cancel-button">
+                <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
+            </div>
+            <div class="submit-button">
+                <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled()">Submit</button>
+            </div>
         </div>
-        <div class="submit-button">
-            <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled()">Submit</button>
-        </div>
-    </div>
 
-</form>
+    </form>
 </mat-card>
 
 
