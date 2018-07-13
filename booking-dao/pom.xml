@@ -13,6 +13,7 @@
             <groupId>com.asmith</groupId>
             <artifactId>booking-entities</artifactId>
             <version>${project.version}</version>
+             <scope>provided</scope>
         </dependency>                
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -23,11 +24,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.13.1.1</version>
         </dependency>
         
         <!-- test deps -->

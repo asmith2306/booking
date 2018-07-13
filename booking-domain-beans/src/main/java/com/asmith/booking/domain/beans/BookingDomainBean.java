@@ -35,12 +35,12 @@ public class BookingDomainBean implements DomainBean<Booking> {
 
     @Override
     public Booking find(String id) {
-        return bookingRepo.findOne(Long.valueOf(id));
+        return bookingRepo.findById(Long.valueOf(id)).orElse(null);
     }
 
     @Override
     public Booking update(String id, Booking booking) {
-        Booking bookingToUpdate = bookingRepo.findOne(Long.valueOf(id));
+        Booking bookingToUpdate = bookingRepo.findById(Long.valueOf(id)).orElse(null);
 
         bookingToUpdate.setCheckInDate(booking.getCheckInDate());
         bookingToUpdate.setCheckOutDate(booking.getCheckOutDate());
@@ -56,7 +56,7 @@ public class BookingDomainBean implements DomainBean<Booking> {
                 roomRepo.save(previousRoom);
             }
             for (Room r : booking.getRooms()) {
-                Room room = roomRepo.findOne(r.getId());
+                Room room = roomRepo.findById(r.getId()).orElse(null);
                 room.setBooking(bookingToUpdate);
                 roomsToUpdate.add(room);
                 roomRepo.save(room);
@@ -67,35 +67,15 @@ public class BookingDomainBean implements DomainBean<Booking> {
         return bookingRepo.save(bookingToUpdate);
     }
 
-    /**
-     * All fields in the incoming booking should be null except for the field to
-     * be patched
-     *
-     * @param id
-     * @param booking
-     * @return
-     */
-    @Override
-    public Booking patch(String id, Booking booking) {
-        Booking bookingToPatch = bookingRepo.findOne(Long.valueOf(id));
-
-        bookingToPatch = patchBooking(bookingToPatch, booking);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void delete(String id) {
-        Booking bookingToDelete = bookingRepo.findOne(Long.valueOf(id));
+        Booking bookingToDelete = bookingRepo.findById(Long.valueOf(id)).orElse(null);
         for (Room r : bookingToDelete.getRooms()) {
-            Room room = roomRepo.findOne(r.getId());
+            Room room = roomRepo.findById(r.getId()).orElse(null);
             room.setBooking(null);
             roomRepo.save(room);
         }
         bookingRepo.delete(bookingToDelete);
-    }
-
-    private Booking patchBooking(Booking oldBooking, Booking newBooking) {
-        return null;
     }
 
 }

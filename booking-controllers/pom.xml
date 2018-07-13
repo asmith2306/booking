@@ -15,11 +15,13 @@
             <groupId>com.asmith</groupId>
             <artifactId>booking-entities</artifactId>
             <version>${project.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.asmith</groupId>
             <artifactId>booking-domain-beans</artifactId>
             <version>${project.version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- Spring deps-->
         <dependency>
@@ -28,18 +30,4 @@
         </dependency>
         
     </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <jvmArguments>
-                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-                    </jvmArguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

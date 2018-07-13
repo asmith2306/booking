@@ -24,6 +24,21 @@
             <artifactId>booking-controllers</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.asmith</groupId>
+            <artifactId>booking-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.asmith</groupId>
+            <artifactId>booking-domain-beans</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.asmith</groupId>
+            <artifactId>booking-entities</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -37,8 +52,17 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+                    </jvmArguments>
+                </configuration>
+            </plugin>
           
         </plugins>
     </build>
-
 </project>

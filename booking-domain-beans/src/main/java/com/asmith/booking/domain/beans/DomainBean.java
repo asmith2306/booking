@@ -15,8 +15,6 @@ public interface DomainBean<T> {
 
     T update(String id, T object);
 
-    T patch(String id, T object);
-
     void delete(String id);
     
 }

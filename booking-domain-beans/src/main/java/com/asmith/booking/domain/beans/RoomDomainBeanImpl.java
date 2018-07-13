@@ -62,41 +62,21 @@ public class RoomDomainBeanImpl implements RoomDomainBean {
 
     @Override
     public Room find(String id) {
-        return roomRepo.findOne(Long.valueOf(id));
+        return roomRepo.findById(Long.valueOf(id)).orElse(null);
     }
 
     @Override
     public Room update(String id, Room room) {
-        Room roomToUpdate = roomRepo.findOne(Long.valueOf(id));
+        Room roomToUpdate = roomRepo.findById(Long.valueOf(id)).orElse(null);
 
         roomToUpdate = room;
 
         return roomRepo.save(roomToUpdate);
     }
 
-    /**
-     * All fields in the incoming room should be null except for the field to be
-     * patched
-     *
-     * @param id
-     * @param room
-     * @return
-     */
-    @Override
-    public Room patch(String id, Room room) {
-        Room roomToPatch = roomRepo.findOne(Long.valueOf(id));
-
-        roomToPatch = patchRoom(roomToPatch, room);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void delete(String id) {
-        roomRepo.delete(Long.valueOf(id));
-    }
-
-    private Room patchRoom(Room oldRoom, Room newRoom) {
-        return null;
+        roomRepo.deleteById(Long.valueOf(id));
     }
 
     /**

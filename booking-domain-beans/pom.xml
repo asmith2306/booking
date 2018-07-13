@@ -13,11 +13,13 @@
             <groupId>com.asmith</groupId>
             <artifactId>booking-entities</artifactId>
             <version>${project.version}</version>
+             <scope>provided</scope>
         </dependency>  
         <dependency>
             <groupId>com.asmith</groupId>
             <artifactId>booking-dao</artifactId>
             <version>${project.version}</version>
+             <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

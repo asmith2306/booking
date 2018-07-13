@@ -28,7 +28,6 @@ export class BookingsDashboardComponent implements OnInit {
         } else {
             this.addButtonTooltipText = "Booked up";
         }
-        console.log(this.roomsAvailable)
     }
 
     addBooking() {
