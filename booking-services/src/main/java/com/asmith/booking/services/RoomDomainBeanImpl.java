@@ -1,6 +1,6 @@
-package com.asmith.booking.domain.beans;
+package com.asmith.booking.services;
 
-import com.asmith.booking.dao.service.RoomRepository;
+import com.asmith.booking.repos.RoomRepository;
 import com.asmith.booking.entities.Room;
 import com.asmith.booking.entities.embeddables.RoomType;
 import java.util.ArrayList;

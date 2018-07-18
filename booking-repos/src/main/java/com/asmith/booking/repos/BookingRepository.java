@@ -1,4 +1,4 @@
-package com.asmith.booking.dao.service;
+package com.asmith.booking.repos;
 
 import com.asmith.booking.entities.Booking;
 import org.springframework.data.repository.CrudRepository;

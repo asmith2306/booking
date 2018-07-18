@@ -1,7 +1,7 @@
 package com.asmith.booking.controllers;
 
 import com.asmith.booking.entities.Booking;
-import com.asmith.booking.domain.beans.DomainBean;
+import com.asmith.booking.services.DomainBean;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

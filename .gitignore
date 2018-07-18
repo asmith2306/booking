@@ -1,8 +1,7 @@
 /booking-frontend/target/
-/booking-domain-beans/target/
+/booking-services/target/
 /booking-backend/target/
 /booking-entities/target/
-/booking-dao/target/
+/booking-repos/target/
 /booking-controllers/target/
-/booking-frontend/src/main/angular/nbproject/private/
-/recursion/target/
+/booking-frontend/src/main/angular/nbproject/

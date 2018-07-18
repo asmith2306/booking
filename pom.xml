@@ -14,9 +14,9 @@
     <modules>
         <module>booking-entities</module>
         <module>booking-controllers</module>
-        <module>booking-dao</module>
+        <module>booking-repos</module>
         <module>booking-backend</module>
-        <module>booking-domain-beans</module>
+	<module>booking-services</module>
         <module>booking-frontend</module>
   </modules>
     <properties>

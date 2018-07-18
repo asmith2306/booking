@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.asmith</groupId>
-            <artifactId>booking-domain-beans</artifactId>
+	    <artifactId>booking-services</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>

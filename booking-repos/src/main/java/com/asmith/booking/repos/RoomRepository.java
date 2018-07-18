@@ -1,4 +1,4 @@
-package com.asmith.booking.dao.service;
+package com.asmith.booking.repos;
 
 import com.asmith.booking.entities.Room;
 import java.util.List;
