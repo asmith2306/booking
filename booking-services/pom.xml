@@ -13,13 +13,21 @@
             <groupId>com.asmith</groupId>
             <artifactId>booking-entities</artifactId>
             <version>${project.version}</version>
-             <scope>provided</scope>
+            <scope>provided</scope>
         </dependency>  
         <dependency>
             <groupId>com.asmith</groupId>
             <artifactId>booking-repos</artifactId>
             <version>${project.version}</version>
-             <scope>provided</scope>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

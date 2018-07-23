@@ -1,7 +1,7 @@
-package com.asmith.booking.controllers;
+package com.asmith.booking.controllers.api;
 
 import com.asmith.booking.entities.Booking;
-import com.asmith.booking.services.DomainBean;
+import com.asmith.booking.services.DomainService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author asmith
  */
 @RestController
-@RequestMapping("/bookings")
+@RequestMapping("/api/bookings")
 public class BookingController {
 
     @Autowired
-    DomainBean<Booking> bookingBean;
+    DomainService<Booking> bookingBean;
 
     @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<Booking> create(@RequestBody Booking booking) {

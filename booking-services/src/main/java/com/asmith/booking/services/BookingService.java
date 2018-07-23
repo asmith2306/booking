@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author asmith
  */
 @Service
-public class BookingDomainBean implements DomainBean<Booking> {
+public class BookingService implements DomainService<Booking> {
 
     @Autowired
     BookingRepository bookingRepo;

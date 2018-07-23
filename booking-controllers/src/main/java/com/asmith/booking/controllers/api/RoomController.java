@@ -1,4 +1,4 @@
-package com.asmith.booking.controllers;
+package com.asmith.booking.controllers.api;
 
 import com.asmith.booking.entities.Room;
 import com.asmith.booking.services.RoomDomainBean;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author asmith
  */
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
 public class RoomController {
 
     @Autowired

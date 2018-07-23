@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Alan
  */
-public interface RoomDomainBean extends DomainBean<Room> {
+public interface RoomDomainBean extends DomainService<Room> {
 
     List<String> findAllRoomTypes();
 

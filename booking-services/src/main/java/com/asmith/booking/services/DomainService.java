@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author asmith
  */
-public interface DomainBean<T> {
+public interface DomainService<T> {
 
     T create();
 

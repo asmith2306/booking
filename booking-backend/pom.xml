@@ -31,19 +31,13 @@
         </dependency>
         <dependency>
             <groupId>com.asmith</groupId>
-	    <artifactId>booking-services</artifactId>
+            <artifactId>booking-services</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.asmith</groupId>
             <artifactId>booking-entities</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
 
@@ -63,9 +57,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-<!--                    <jvmArguments>
-                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-                    </jvmArguments>-->
+                    <jvmArguments>
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+                    </jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
