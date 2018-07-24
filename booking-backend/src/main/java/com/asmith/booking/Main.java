@@ -1,7 +1,9 @@
 package com.asmith.booking;
 
-import com.asmith.booking.filters.SessionFilter;
-import com.asmith.booking.services.SessionManager;
+import com.asmith.booking.session.SessionFilter;
+import com.asmith.booking.services.SessionService;
+import com.asmith.booking.session.SessionThread;
+import com.asmith.booking.session.SessionThreadRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -24,17 +26,27 @@ public class Main {
 
     @Bean
     public FilterRegistrationBean<SessionFilter> sessionFilter() {
-        FilterRegistrationBean<SessionFilter> registrationBean = new FilterRegistrationBean<>();
+        FilterRegistrationBean<SessionFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 
-        registrationBean.setFilter(new SessionFilter(sessionManager()));
-        registrationBean.addUrlPatterns("/api/*");
+        filterRegistrationBean.setFilter(new SessionFilter(sessionManager()));
+        filterRegistrationBean.addUrlPatterns("/api/*");
 
-        return registrationBean;
+        return filterRegistrationBean;
     }
-    
+
     @Bean
-    public SessionManager sessionManager(){
-        return new SessionManager();
+    public SessionService sessionManager() {
+        return new SessionService();
+    }
+
+    @Bean
+    public SessionThreadRunner sessionThreadRunner() {
+        return new SessionThreadRunner(sessionThread());
+    }
+
+    @Bean
+    public SessionThread sessionThread() {
+        return new SessionThread();
     }
 
 }

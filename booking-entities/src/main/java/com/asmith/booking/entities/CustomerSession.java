@@ -52,4 +52,9 @@ public class CustomerSession implements Serializable {
         this.lastAccessed = lastAccessed;
     }
 
+    @Override
+    public String toString() {
+        return "CustomerSession{" + "id=" + id + ", sessionId=" + sessionId + ", lastAccessed=" + lastAccessed + '}';
+    }
+
 }

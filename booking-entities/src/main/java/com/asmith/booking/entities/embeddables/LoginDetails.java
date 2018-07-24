@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class LoginDetails implements Serializable {
 
+    //this should be the customers email
     private String userName;
     private String password;
 

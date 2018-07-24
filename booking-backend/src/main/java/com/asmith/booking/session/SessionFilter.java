@@ -1,6 +1,6 @@
-package com.asmith.booking.filters;
+package com.asmith.booking.session;
 
-import com.asmith.booking.services.SessionManager;
+import com.asmith.booking.services.SessionService;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,10 +18,10 @@ public class SessionFilter implements Filter {
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionFilter.class.getName());
 
-    private final SessionManager sm;
+    private final SessionService sessionService;
 
-    public SessionFilter(SessionManager smIn) {
-        sm = smIn;
+    public SessionFilter(SessionService sessionServiceIn) {
+        sessionService = sessionServiceIn;
     }
 
     @Override
@@ -30,17 +30,18 @@ public class SessionFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
-        LOG.info("In session filter");
-        HttpServletRequest req = (HttpServletRequest) sr;
-        HttpServletResponse resp = (HttpServletResponse) sr1;
-        sm.checkSession(req, resp);
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        sessionService.checkSession(req, resp);
 
         if (resp.getStatus() != HttpStatus.OK.value()) {
+            resp.getOutputStream().println("Unauthorised");
+            resp.getOutputStream().close();
             return;
         }
 
-        fc.doFilter(sr, sr1);
+        fc.doFilter(request, response);
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ public class Customer implements Serializable {
 
     private String firstName;
 
-    private String surName;
+    private String lastName;
 
     @Column(name = "EMAIL")
     private String email;
@@ -56,12 +57,12 @@ public class Customer implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setLastName(String surName) {
+        this.lastName = surName;
     }
 
     public List<Booking> getBookings() {
@@ -94,6 +95,11 @@ public class Customer implements Serializable {
 
     public void setLoginDetails(LoginDetails loginDetails) {
         this.loginDetails = loginDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", bookings=" + bookings + ", customerSession=" + customerSession + ", loginDetails=" + loginDetails + '}';
     }
     
 }
