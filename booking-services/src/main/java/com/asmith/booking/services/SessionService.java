@@ -35,7 +35,7 @@ public class SessionService {
     @Transactional
     public void checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);
-   
+
         if (null == session) {
             responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
             return;
@@ -71,6 +71,27 @@ public class SessionService {
         customerRepository.save(customer);
     }
 
+    public void deleteExpiredSessions(Long sessionTimeout) {
+        List<CustomerSession> expiredSessions = customerSessionRepository.findBylastAccessedLessThan(System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(sessionTimeout));
+        expiredSessions.forEach(session -> {
+            deleteSession(session);
+        });
+    }
+
+    public void logout(HttpServletRequest requestIn) {
+        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
+        if (!customerSessions.isEmpty()) {
+            deleteSession(customerSessions.get(0));
+        }
+    }
+
+    private void deleteSession(CustomerSession session) {
+        Customer customer = customerRepository.findByCustomerSession(session).get(0);
+        customer.setCustomerSession(null);
+        customerRepository.save(customer);
+        customerSessionRepository.delete(session);
+    }
+
     private String getJSessionId(HttpServletRequest requestIn) {
         if (null != requestIn.getCookies()) {
             for (Cookie c : requestIn.getCookies()) {
@@ -79,18 +100,12 @@ public class SessionService {
                 }
             }
         }
-
         return null;
     }
 
-    public void deleteExpiredSessions(Long sessionTimeout) {
-        List<CustomerSession> expiredSessions = customerSessionRepository.findBylastAccessedLessThan(System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(sessionTimeout));
-        expiredSessions.forEach(session -> {
-            Customer customer = customerRepository.findByCustomerSession(session).get(0);
-            customer.setCustomerSession(null);
-            customerRepository.save(customer);
-            customerSessionRepository.delete(session);
-        });
+    public boolean hasActiveSession(HttpServletRequest requestIn) {
+        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
+        return !customerSessions.isEmpty();
     }
 
 }

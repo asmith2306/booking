@@ -1,7 +1,7 @@
-package com.asmith.booking.controllers.registration;
+package com.asmith.booking.controllers.access;
 
 import com.asmith.booking.entities.embeddables.RegistrationDetails;
-import com.asmith.booking.services.LoginRegistrationService;
+import com.asmith.booking.services.AccessService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,16 @@ public class RegistrationController {
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class.getName());
 
     @Autowired
-    private LoginRegistrationService registrationService;
+    private AccessService accessService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<String> register(@RequestBody RegistrationDetails registrationDetails) {
 
-        if (registrationService.customerExists(registrationDetails.getEmail())) {
+        if (accessService.customerExists(registrationDetails.getEmail())) {
             return new ResponseEntity("Email already in use", HttpStatus.CONFLICT);
         }
 
-        registrationService.registerCustomer(registrationDetails);
+        accessService.registerCustomer(registrationDetails);
 
         return new ResponseEntity("Registration complete", HttpStatus.OK);
     }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author asmith
  */
 @Service
-public class LoginRegistrationService {
+public class AccessService {
 
     @Autowired
     private CustomerRepository customerRepo;

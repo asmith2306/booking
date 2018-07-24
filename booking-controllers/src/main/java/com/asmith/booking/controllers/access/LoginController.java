@@ -1,7 +1,7 @@
-package com.asmith.booking.controllers.login;
+package com.asmith.booking.controllers.access;
 
 import com.asmith.booking.entities.embeddables.LoginDetails;
-import com.asmith.booking.services.LoginRegistrationService;
+import com.asmith.booking.services.AccessService;
 import com.asmith.booking.services.SessionService;
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,24 +28,26 @@ public class LoginController {
     private SessionService sessionService;
 
     @Autowired
-    private LoginRegistrationService loginService;
+    private AccessService accessService;
 
     @Autowired
     private HttpServletRequest request;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginDetails loginDetails) {
-
-        LOG.info(loginDetails.toString());
-
         // Check user name
-        if (!loginService.customerExists(loginDetails.getUserName())) {
+        if (!accessService.customerExists(loginDetails.getUserName())) {
             return new ResponseEntity("We cannot find an account with that e-mail address", HttpStatus.CONFLICT);
         }
 
-        //Check password
-        if (loginService.invalidPassword(loginDetails)) {
+        // Check password
+        if (accessService.invalidPassword(loginDetails)) {
             return new ResponseEntity("Your password is incorrect", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        // Check session active
+        if (sessionService.hasActiveSession(request)) {
+            return new ResponseEntity("User already logged in", HttpStatus.CONFLICT);
         }
 
         sessionService.createSession(loginDetails, request);
