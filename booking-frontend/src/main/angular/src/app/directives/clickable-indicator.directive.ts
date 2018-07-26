@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[appClickableIndicator]'
@@ -9,5 +9,5 @@ export class ClickableIndicatorDirective {
       let element: HTMLElement = el.nativeElement;
       element.style.cursor = "pointer";
   }
-
+    
 }

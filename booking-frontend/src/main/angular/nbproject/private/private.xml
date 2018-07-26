@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/dashboard/bookings-dashboard.component.ts</file>
+            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/bookings.service.ts</file>
+            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/guards/auth.guard.ts</file>
+            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app-routing.module.ts</file>
+            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/tsconfig.json</file>
+            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/auth.service.ts</file>
         </group>
     </open-files>
 </project-private>

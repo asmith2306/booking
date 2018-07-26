@@ -52,7 +52,7 @@ public class LoginController {
 
         sessionService.createSession(loginDetails, request);
 
-        return new ResponseEntity("Login success", HttpStatus.OK);
+        return new ResponseEntity(loginDetails, HttpStatus.OK);
     }
 
 }

@@ -18,6 +18,12 @@ import {AllRoomTypesResolver} from "./bookings/resolvers/all-room-types-resolver
 import {AvailableRoomTypesResolver} from "./bookings/resolvers/available-room-types-resolver";
 import {RoomsService} from "./rest/rooms.service";
 import {AvailableRoomsResolver} from "./bookings/resolvers/available-rooms-resolver";
+import {RegisterComponent} from './register/register.component';
+import {LoginComponent} from './login/login.component';
+import {AuthComponent} from './auth/auth.component';
+import {AuthGuard} from "./auth/guards/auth.guard";
+import {AuthService} from "./rest/auth.service";
+import {LoginService} from "./rest/login.service";
 
 @NgModule({
     declarations: [
@@ -25,7 +31,10 @@ import {AvailableRoomsResolver} from "./bookings/resolvers/available-rooms-resol
         BookingsDashboardComponent,
         BookingsListComponent,
         ClickableIndicatorDirective,
-        EditBookingComponent
+        EditBookingComponent,
+        RegisterComponent,
+        LoginComponent,
+        AuthComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +46,7 @@ import {AvailableRoomsResolver} from "./bookings/resolvers/available-rooms-resol
         FormsModule
     ],
     providers: [BookingsService, BookingsResolver, BookingResolver, RoomsService,
-        AllRoomTypesResolver, AvailableRoomTypesResolver, AvailableRoomsResolver],
+        AllRoomTypesResolver, AvailableRoomTypesResolver, AvailableRoomsResolver, AuthGuard, AuthService, LoginService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

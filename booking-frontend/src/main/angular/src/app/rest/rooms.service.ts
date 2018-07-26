@@ -6,7 +6,7 @@ import {Room} from "../models/Room";
 @Injectable()
 export class RoomsService {
 
-    private baseUrl: string = "/api/rooms";
+    private baseUrl: string = "/app/api/rooms";
 
     constructor(private http: HttpClient) {}
 

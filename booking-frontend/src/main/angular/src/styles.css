@@ -13,3 +13,7 @@
     width: 20% !important;
     text-align: center !important;
 }
+
+.mat-form-field {
+  width: 100%;
+}

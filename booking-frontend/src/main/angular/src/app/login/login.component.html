@@ -1,0 +1,35 @@
+<div class="login-div">
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <mat-card>
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content>
+                <div fxLayout>
+                    <div fxFlex="1 1 100">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" name="email"
+                                   [(ngModel)]="email" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout>
+                    <div fxFlex="1 1 100">
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Password" name="password"
+                                   [(ngModel)]="password" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout>
+                    <div fxFlex="1 1 100" *ngIf="showRegistrationLink">
+                        <mat-icon style="vertical-align: text-bottom;">error_outline</mat-icon>
+                        <span style="vertical-align: super;"> {{loginError}}. Would you like to
+                            <span appClickableIndicator (click)="openRegisterDialog()" style="font-weight: bold">register?</span></span>
+                    </div>
+                </div>
+            </mat-card-content>
+            <div fxLayout fxLayoutAlign="end center">
+                <button mat-raised-button class="login-button" type="submit" color="warn" [disabled]="loginDisabled()">Login</button>
+            </div>
+        </mat-card>
+    </form>
+</div>

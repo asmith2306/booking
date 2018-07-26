@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Alan
@@ -32,7 +31,6 @@ public class SessionService {
     @Autowired
     CustomerSessionRepository customerSessionRepository;
 
-    @Transactional
     public void checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);
 
@@ -48,12 +46,8 @@ public class SessionService {
         }
 
         CustomerSession customerSession = customerSessions.get(0);
-        Customer customer = customerRepository.findByCustomerSession(customerSession).get(0);
-
         customerSession.setLastAccessed(System.currentTimeMillis());
         customerSessionRepository.save(customerSession);
-
-        LOG.info(customer.toString());
     }
 
     public void createSession(LoginDetails loginDetails, HttpServletRequest request) {
@@ -100,7 +94,7 @@ public class SessionService {
                 }
             }
         }
-        return null;
+        return "";
     }
 
     public boolean hasActiveSession(HttpServletRequest requestIn) {
