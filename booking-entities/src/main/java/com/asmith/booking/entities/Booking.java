@@ -86,4 +86,12 @@ public class Booking implements Serializable {
         this.numberOfChildren = numberOfChildren;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
 }

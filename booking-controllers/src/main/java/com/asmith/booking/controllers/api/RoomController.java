@@ -29,7 +29,6 @@ public class RoomController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     ResponseEntity<Room> read(@PathVariable("id") String id) {
-        // return single room
         return new ResponseEntity<>(roomBean.find(id), HttpStatus.OK);
     }
 
@@ -50,7 +49,6 @@ public class RoomController {
 
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<List<Room>> readAll() {
-
         return new ResponseEntity<>(roomBean.findAll(), HttpStatus.OK);
     }
 

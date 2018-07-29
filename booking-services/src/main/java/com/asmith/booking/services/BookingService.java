@@ -3,9 +3,14 @@ package com.asmith.booking.services;
 import com.asmith.booking.repos.BookingRepository;
 import com.asmith.booking.repos.RoomRepository;
 import com.asmith.booking.entities.Booking;
+import com.asmith.booking.entities.Customer;
 import com.asmith.booking.entities.Room;
+import com.asmith.booking.repos.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +20,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingService implements DomainService<Booking> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BookingService.class.getName());
+
     @Autowired
     BookingRepository bookingRepo;
+
+    @Autowired
+    CustomerRepository customerRepository;
+
     @Autowired
     RoomRepository roomRepo;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @Override
     public Booking create() {
-        return bookingRepo.save(new Booking());
+        Customer customer = (Customer) request.getAttribute("customer");
+
+        Booking booking = new Booking();
+        customer.getBookings().add(booking);
+        
+        booking.setCustomer(customer);
+        
+        bookingRepo.save(booking);
+        customerRepository.save(customer);
+
+        return booking;
     }
 
     @Override

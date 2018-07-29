@@ -2,6 +2,7 @@ package com.asmith.booking.entities;
 
 import com.asmith.booking.entities.embeddables.LoginDetails;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -33,8 +34,8 @@ public class Customer implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
-    @OneToMany(mappedBy = "customer")
-    List<Booking> bookings;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    List<Booking> bookings = new ArrayList<>();
    
     @OneToOne
     private CustomerSession customerSession;

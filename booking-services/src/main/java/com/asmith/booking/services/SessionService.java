@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,9 @@ public class SessionService {
     @Autowired
     CustomerSessionRepository customerSessionRepository;
 
+    @Value("${user.session.timeout}")
+    private String sessionTimeout;
+
     public void checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);
 
@@ -46,6 +50,14 @@ public class SessionService {
         }
 
         CustomerSession customerSession = customerSessions.get(0);
+        if (customerSession.getLastAccessed() < (System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(Long.valueOf(sessionTimeout)))) {
+            responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
+            deleteSession(customerSession);
+            return;
+        }
+
+        requestIn.setAttribute("customer", customerRepository.findByCustomerSession(customerSession).get(0));
+        
         customerSession.setLastAccessed(System.currentTimeMillis());
         customerSessionRepository.save(customerSession);
     }

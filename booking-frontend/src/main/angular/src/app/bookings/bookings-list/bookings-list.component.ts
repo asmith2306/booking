@@ -26,7 +26,7 @@ export class BookingsListComponent implements OnInit {
     }
 
     onClickEditBooking(id: string) {
-        this.router.navigate(['edit-booking', id]);
+        this.router.navigate(['main/edit-booking', id]);
     }
 
     onClickDeleteBooking(id: string) {

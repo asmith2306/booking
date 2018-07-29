@@ -40,6 +40,8 @@ public class SessionFilter implements Filter {
             resp.getOutputStream().close();
             return;
         }
+        
+        
 
         fc.doFilter(request, response);
     }

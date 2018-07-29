@@ -2,8 +2,6 @@ package com.asmith.booking;
 
 import com.asmith.booking.session.SessionFilter;
 import com.asmith.booking.services.SessionService;
-import com.asmith.booking.session.SessionThread;
-import com.asmith.booking.session.SessionThreadRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -37,16 +35,6 @@ public class Main {
     @Bean
     public SessionService sessionManager() {
         return new SessionService();
-    }
-
-    @Bean
-    public SessionThreadRunner sessionThreadRunner() {
-        return new SessionThreadRunner(sessionThread());
-    }
-
-    @Bean
-    public SessionThread sessionThread() {
-        return new SessionThread();
     }
 
 }
