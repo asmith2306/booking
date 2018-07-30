@@ -40,9 +40,7 @@ public class BookingService implements DomainService<Booking> {
 
         Booking booking = new Booking();
         customer.getBookings().add(booking);
-        
-        booking.setCustomer(customer);
-        
+
         bookingRepo.save(booking);
         customerRepository.save(customer);
 
@@ -55,6 +53,15 @@ public class BookingService implements DomainService<Booking> {
         List<Booking> allBookings = new ArrayList<>();
         bookingRepo.findAll().iterator().forEachRemaining(allBookings::add);
         return allBookings;
+    }
+
+    public List<Booking> findAllCustomerBookings() {
+        Customer customer = (Customer) request.getAttribute("customer");
+
+        // return all customer bookings
+        List<Booking> customerBookings = new ArrayList<>();
+        customerBookings.addAll(customer.getBookings());
+        return customerBookings;
     }
 
     @Override
@@ -93,12 +100,18 @@ public class BookingService implements DomainService<Booking> {
 
     @Override
     public void delete(String id) {
+        Customer customer = (Customer) request.getAttribute("customer");
+        
         Booking bookingToDelete = bookingRepo.findById(Long.valueOf(id)).orElse(null);
+        
+        customer.getBookings().remove(bookingToDelete);
+        
         for (Room r : bookingToDelete.getRooms()) {
             Room room = roomRepo.findById(r.getId()).orElse(null);
             room.setBooking(null);
             roomRepo.save(room);
         }
+        customerRepository.save(customer);
         bookingRepo.delete(bookingToDelete);
     }
 

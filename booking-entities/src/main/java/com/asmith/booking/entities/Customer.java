@@ -34,7 +34,7 @@ public class Customer implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     List<Booking> bookings = new ArrayList<>();
    
     @OneToOne

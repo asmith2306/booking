@@ -22,7 +22,7 @@ import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {AuthComponent} from './auth/auth.component';
 import {AuthGuard} from "./auth/guards/auth.guard";
-import {AuthService} from "./rest/auth.service";
+import {AppService} from "./rest/app.service";
 import {LoginService} from "./rest/login.service";
 
 @NgModule({
@@ -46,7 +46,7 @@ import {LoginService} from "./rest/login.service";
         FormsModule
     ],
     providers: [BookingsService, BookingsResolver, BookingResolver, RoomsService,
-        AllRoomTypesResolver, AvailableRoomTypesResolver, AvailableRoomsResolver, AuthGuard, AuthService, LoginService],
+        AllRoomTypesResolver, AvailableRoomTypesResolver, AvailableRoomsResolver, AuthGuard, AppService, LoginService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

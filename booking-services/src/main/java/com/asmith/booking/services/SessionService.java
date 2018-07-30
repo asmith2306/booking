@@ -2,6 +2,7 @@ package com.asmith.booking.services;
 
 import com.asmith.booking.entities.Customer;
 import com.asmith.booking.entities.CustomerSession;
+import com.asmith.booking.entities.embeddables.CustomerDetails;
 import com.asmith.booking.entities.embeddables.LoginDetails;
 import com.asmith.booking.repos.CustomerRepository;
 import com.asmith.booking.repos.CustomerSessionRepository;
@@ -57,7 +58,7 @@ public class SessionService {
         }
 
         requestIn.setAttribute("customer", customerRepository.findByCustomerSession(customerSession).get(0));
-        
+
         customerSession.setLastAccessed(System.currentTimeMillis());
         customerSessionRepository.save(customerSession);
     }
@@ -91,11 +92,19 @@ public class SessionService {
         }
     }
 
-    private void deleteSession(CustomerSession session) {
+    public void deleteSession(CustomerSession session) {
         Customer customer = customerRepository.findByCustomerSession(session).get(0);
         customer.setCustomerSession(null);
         customerRepository.save(customer);
         customerSessionRepository.delete(session);
+    }
+
+    public void deleteSession(HttpServletRequest requestIn) {
+        CustomerSession customerSession = getCustomerSession(requestIn);
+        Customer customer = customerRepository.findByCustomerSession(customerSession).get(0);
+        customer.setCustomerSession(null);
+        customerRepository.save(customer);
+        customerSessionRepository.delete(customerSession);
     }
 
     private String getJSessionId(HttpServletRequest requestIn) {
@@ -111,7 +120,31 @@ public class SessionService {
 
     public boolean hasActiveSession(HttpServletRequest requestIn) {
         List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
-        return !customerSessions.isEmpty();
+        return !customerSessions.isEmpty() && customerSessions.get(0).getSessionId().equals(getJSessionId(requestIn));
+    }
+
+    public CustomerDetails getUser(HttpServletRequest requestIn, HttpServletResponse responseIn) {
+        CustomerSession customerSession = getCustomerSession(requestIn);
+
+        if (null == customerSession) {
+            responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return null;
+        }
+
+        Customer c = customerRepository.findByCustomerSession(customerSession).get(0);
+        CustomerDetails details = new CustomerDetails();
+        details.setEmail(c.getEmail());
+        details.setFirstName(c.getFirstName());
+        details.setLastName(c.getLastName());
+        return details;
+    }
+
+    private CustomerSession getCustomerSession(HttpServletRequest requestIn) {
+        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
+        if (customerSessions.isEmpty()) {
+            return null;
+        }
+        return customerSessions.get(0);
     }
 
 }

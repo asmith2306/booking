@@ -45,9 +45,9 @@ public class LoginController {
             return new ResponseEntity("Your password is incorrect", HttpStatus.NOT_ACCEPTABLE);
         }
 
-        // Check session active
+        // Check for an active session, delete any active session if an attempt to login is made
         if (sessionService.hasActiveSession(request)) {
-            return new ResponseEntity("User already logged in", HttpStatus.CONFLICT);
+            this.sessionService.deleteSession(request);
         }
 
         sessionService.createSession(loginDetails, request);

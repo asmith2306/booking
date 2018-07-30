@@ -1,1 +1,5 @@
+<div *ngIf="haveUser==true">
+    <div style="float: right">{{user}}</div>
+    <div style="float: right;clear: right" (click)="logout()" appClickableIndicator>Logout</div>
+</div>
 <router-outlet></router-outlet>

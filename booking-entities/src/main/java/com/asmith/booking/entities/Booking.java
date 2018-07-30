@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -27,16 +29,13 @@ public class Booking implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date checkOutDate;
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("booking")
     private List<Room> rooms;
 
     private Integer numberOfAdults = 1; // must have at least 1 adult!
 
     private Integer numberOfChildren;
-
-    @ManyToOne
-    private Customer customer;
     
     public Long getId() {
         return id;
@@ -86,12 +85,29 @@ public class Booking implements Serializable {
         this.numberOfChildren = numberOfChildren;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Booking other = (Booking) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
     
 }

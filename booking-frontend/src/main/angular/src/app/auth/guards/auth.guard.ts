@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {AuthService} from '../../rest/auth.service';
+import {AppService} from '../../rest/app.service';
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private appService: AppService, private router: Router) {
 
     }
 
     canActivate() {
         console.log('AuthGuard#canActivate called');
 
-        return this.authService.checkAuthorisation().map(res => {
+        return this.appService.checkAuthorisation().map(res => {
             if (res) {
                 return true;
             }

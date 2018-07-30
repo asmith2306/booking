@@ -53,8 +53,11 @@ export class EditBookingComponent implements OnInit {
 
     onSubmit() {
         this.roomsService.getNext(this.selectedRoomType).subscribe((nextRoom: Room) => {
-            this.booking.rooms = new Array<Room>();
-            this.booking.rooms.push(nextRoom);
+            if (this.booking.rooms.length == 0) {
+                this.booking.rooms = new Array<Room>();
+                this.booking.rooms.push(nextRoom);
+            }
+
             this.bookingsService.update(this.booking).subscribe(booking => {
                 // show message and back to dashboard on success
                 this.snackBar.open("Booking saved", '', {'duration': 2000});
