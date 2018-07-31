@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/login/login.component.html</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/auth.component.html</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/models/RegistrationDetails.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app-routing.module.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/login/login.component.scss</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/auth.component.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/register/register.component.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/bookings.service.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/bookings-list/bookings-list.component.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/auth.service.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app.module.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/login/login.component.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/register/register.component.html</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/dashboard/bookings-dashboard.component.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/registration.service.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/rest/login.service.ts</file>
-            <file>file:/C:/Users/Alan/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/guards/auth.guard.ts</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

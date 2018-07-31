@@ -1,8 +1,8 @@
-<div>
-    <mat-table #table [dataSource]="dataSource">
+<div id="booking-list-table-container" fxLayout fxLayoutAlign="center center">
+    <mat-table fxFlex="0 0 80" fxFlex.xs="0 0 95" #table [dataSource]="dataSource">
 
         <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
+              The actual rendered columns are set as a property on the row definition in the component" -->
 
         <!-- Name Column -->
         <ng-container matColumnDef="checkInDate">

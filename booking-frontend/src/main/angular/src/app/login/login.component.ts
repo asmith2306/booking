@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         this.loginService.login(this.email, this.password).subscribe(res => {
-            console.log(res)
             this.router.navigate(["main/bookings-dashboard"]);
         }, (err: HttpErrorResponse) => {
             this.showRegistrationLink = true;

@@ -11,8 +11,6 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate() {
-        console.log('AuthGuard#canActivate called');
-
         return this.appService.checkAuthorisation().map(res => {
             if (res) {
                 return true;

@@ -1,5 +1,5 @@
-<div *ngIf="haveUser==true">
-    <div style="float: right">{{user}}</div>
-    <div style="float: right;clear: right" (click)="logout()" appClickableIndicator>Logout</div>
+<div fxLayout fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="haveUser==true">
+    <div>{{user}}</div>
+    <div><mat-icon matTooltip="Logout" appClickableIndicator (click)="logout()">eject</mat-icon></div>
 </div>
 <router-outlet></router-outlet>

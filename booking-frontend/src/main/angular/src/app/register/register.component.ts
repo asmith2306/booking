@@ -24,16 +24,15 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.registrationDetails = new RegistrationDetails();
-        console.log(this.registrationForm)
     }
 
     onRegister() {
-        console.log("registering")
         this.registrationService.register(this.registrationDetails).subscribe(res => {
-            console.log(res)
+            this.snackBar.open("Registration complete", null, {
+                duration: 5000,
+            });
             this.router.navigate(["login"]);
         }, (err: HttpErrorResponse) => {
-            console.log(err)
             this.snackBar.open(err.error, null, {
                 duration: 5000,
             });
