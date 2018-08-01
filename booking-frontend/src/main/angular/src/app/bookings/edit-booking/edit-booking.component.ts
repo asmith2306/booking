@@ -17,6 +17,7 @@ export class EditBookingComponent implements OnInit {
     allRoomTypes: Array<string> = new Array<string>();
     availableRoomTypes: Array<string> = new Array<string>();
     selectedRoomType: string = "";
+    fromCreate: boolean;
 
     constructor(private route: ActivatedRoute, private router: Router,
         private bookingsService: BookingsService, private snackBar: MatSnackBar,
@@ -24,6 +25,7 @@ export class EditBookingComponent implements OnInit {
 
     ngOnInit() {
         this.booking = this.route.snapshot.data["booking"]
+        this.fromCreate = JSON.parse(this.route.snapshot.queryParamMap.get("fromCreate"));
         if (this.bookingHasRooms(this.booking)) {
             this.selectedRoomType = this.booking.rooms[0].roomType.name;
         }
@@ -37,6 +39,11 @@ export class EditBookingComponent implements OnInit {
     }
 
     cancelEdit() {
+        if (this.fromCreate) {
+            this.bookingsService.delete(this.booking.id.toString()).subscribe(() => {
+                this.snackBar.open("Booking cancelled", "", {duration: 2000});
+            });
+        }
         this.router.navigate(['/']);
     }
 

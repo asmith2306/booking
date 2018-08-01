@@ -32,7 +32,7 @@ export class BookingsDashboardComponent implements OnInit {
 
     addBooking() {
         this.bookingsService.create().subscribe(booking => {
-            this.router.navigate(['main/edit-booking', booking.id]);
+            this.router.navigate(['main/edit-booking', booking.id], { queryParams: { fromCreate: true }});
         })
     }
     
