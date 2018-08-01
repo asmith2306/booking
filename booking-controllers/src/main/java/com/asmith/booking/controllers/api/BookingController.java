@@ -32,10 +32,10 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.find(id), HttpStatus.OK);
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    ResponseEntity<List<Booking>> findAll() {
-//        return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
-//    }
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    ResponseEntity<List<Booking>> findAll() {
+        return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<List<Booking>> findAllCustomerBookings() {

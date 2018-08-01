@@ -53,7 +53,7 @@ export class EditBookingComponent implements OnInit {
 
     onSubmit() {
         this.roomsService.getNext(this.selectedRoomType).subscribe((nextRoom: Room) => {
-            if (this.booking.rooms.length == 0) {
+            if (this.booking.rooms.length == 0 && nextRoom) {
                 this.booking.rooms = new Array<Room>();
                 this.booking.rooms.push(nextRoom);
             }
