@@ -3,15 +3,15 @@ package com.asmith.booking.controllers.response;
 /**
  * @author Alan
  */
-public class SuccessResponse {
+public class TextResponse {
 
     private String message;
 
-    public SuccessResponse() {
+    public TextResponse() {
 
     }
 
-    public SuccessResponse(String message) {
+    public TextResponse(String message) {
         this.message = message;
     }
 

@@ -1,7 +1,7 @@
 package com.asmith.booking.controllers.access;
 
-import com.asmith.booking.controllers.response.SuccessResponse;
-import com.asmith.booking.entities.embeddables.CustomerDetails;
+import com.asmith.booking.controllers.response.TextResponse;
+import com.asmith.booking.entities.Customer;
 import com.asmith.booking.services.SessionService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,29 +34,29 @@ public class AuthController {
     private HttpServletResponse response;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<SuccessResponse> auth() {
+    public ResponseEntity<Customer> auth() {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        sessionService.checkSession(req, resp);
+        Customer customer = sessionService.checkSession(req, resp);
 
         if (resp.getStatus() != HttpStatus.OK.value()) {
-            return new ResponseEntity("Unauthorised", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity(new TextResponse("Unauthorised"), HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity(new SuccessResponse("Authorised"), HttpStatus.OK);
+        return new ResponseEntity(customer, HttpStatus.OK);
     }
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<CustomerDetails> user() {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        CustomerDetails customerDetails = sessionService.getUser(req, resp);
-
-        if (resp.getStatus() != HttpStatus.OK.value()) {
-            return new ResponseEntity("Unauthorised", HttpStatus.UNAUTHORIZED);
-        }
-
-        return new ResponseEntity(customerDetails, HttpStatus.OK);
-    }
+//
+//    @RequestMapping(value = "/user", method = RequestMethod.GET)
+//    public ResponseEntity<Customer> user() {
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse resp = (HttpServletResponse) response;
+//        Customer customer = sessionService.getUser(req, resp);
+//
+//        if (resp.getStatus() != HttpStatus.OK.value()) {
+//            return new ResponseEntity(new TextResponse("Unauthorised"), HttpStatus.UNAUTHORIZED);
+//        }
+//
+//        return new ResponseEntity(customer, HttpStatus.OK);
+//    }
 
 }

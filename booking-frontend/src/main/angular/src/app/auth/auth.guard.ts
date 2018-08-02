@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import {AppService} from '../../rest/app.service';
+import {AppService} from '../http/rest/app.service';
 import {Observable} from 'rxjs/Rx';
+import {Customer} from "../models/Customer";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,8 +12,9 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate() {
-        return this.appService.checkAuthorisation().map(res => {
+        return this.appService.checkAuthorisation().map((res: Customer) => {
             if (res) {
+                this.appService.activeCustomer = res;
                 return true;
             }
         }).catch(() => {

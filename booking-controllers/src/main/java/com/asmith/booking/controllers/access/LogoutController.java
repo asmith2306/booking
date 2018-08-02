@@ -1,6 +1,6 @@
 package com.asmith.booking.controllers.access;
 
-import com.asmith.booking.controllers.response.SuccessResponse;
+import com.asmith.booking.controllers.response.TextResponse;
 import com.asmith.booking.services.SessionService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class LogoutController {
     private HttpServletRequest request;
 
     @RequestMapping(value = "")
-    public ResponseEntity<SuccessResponse> logout() {
+    public ResponseEntity<TextResponse> logout() {
         sessionService.logout(request);
-        return new ResponseEntity<>(new SuccessResponse("Logged out"), HttpStatus.OK);
+        return new ResponseEntity<>(new TextResponse("Logged out"), HttpStatus.OK);
     }
 }

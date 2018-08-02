@@ -6,7 +6,7 @@ import {
     Router, Resolve, RouterStateSnapshot,
     ActivatedRouteSnapshot
 } from '@angular/router';
-import {RoomsService} from "../../rest/rooms.service";
+import {RoomsService} from "../../http/rest/rooms.service";
 import {Room} from "../../models/Room";
 
 @Injectable()

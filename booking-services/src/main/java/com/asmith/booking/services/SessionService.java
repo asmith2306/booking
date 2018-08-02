@@ -36,31 +36,32 @@ public class SessionService {
     @Value("${user.session.timeout}")
     private String sessionTimeout;
 
-    public void checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
+    public Customer checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);
 
         if (null == session) {
             responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
-            return;
+            return null;
         }
 
         List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
         if (customerSessions.isEmpty()) {
             responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
-            return;
+            return null;
         }
 
         CustomerSession customerSession = customerSessions.get(0);
         if (customerSession.getLastAccessed() < (System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(Long.valueOf(sessionTimeout)))) {
             responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
             deleteSession(customerSession);
-            return;
+            return null;
         }
 
-        requestIn.setAttribute("customer", customerRepository.findByCustomerSession(customerSession).get(0));
-
+        //requestIn.setAttribute("customer", customerRepository.findByCustomerSession(customerSession).get(0));
         customerSession.setLastAccessed(System.currentTimeMillis());
         customerSessionRepository.save(customerSession);
+
+        return customerRepository.findByCustomerSession(customerSession).get(0);
     }
 
     public void createSession(LoginDetails loginDetails, HttpServletRequest request) {
@@ -107,6 +108,30 @@ public class SessionService {
         customerSessionRepository.delete(customerSession);
     }
 
+    public boolean hasActiveSession(HttpServletRequest requestIn) {
+        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
+        return !customerSessions.isEmpty() && customerSessions.get(0).getSessionId().equals(getJSessionId(requestIn));
+    }
+
+    public Customer getUser(HttpServletRequest requestIn, HttpServletResponse responseIn) {
+        CustomerSession customerSession = getCustomerSession(requestIn);
+
+        if (null == customerSession) {
+            responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return null;
+        }
+
+        return customerRepository.findByCustomerSession(customerSession).get(0);
+    }
+
+    private CustomerSession getCustomerSession(HttpServletRequest requestIn) {
+        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
+        if (customerSessions.isEmpty()) {
+            return null;
+        }
+        return customerSessions.get(0);
+    }
+
     private String getJSessionId(HttpServletRequest requestIn) {
         if (null != requestIn.getCookies()) {
             for (Cookie c : requestIn.getCookies()) {
@@ -116,35 +141,6 @@ public class SessionService {
             }
         }
         return "";
-    }
-
-    public boolean hasActiveSession(HttpServletRequest requestIn) {
-        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
-        return !customerSessions.isEmpty() && customerSessions.get(0).getSessionId().equals(getJSessionId(requestIn));
-    }
-
-    public CustomerDetails getUser(HttpServletRequest requestIn, HttpServletResponse responseIn) {
-        CustomerSession customerSession = getCustomerSession(requestIn);
-
-        if (null == customerSession) {
-            responseIn.setStatus(HttpStatus.UNAUTHORIZED.value());
-            return null;
-        }
-
-        Customer c = customerRepository.findByCustomerSession(customerSession).get(0);
-        CustomerDetails details = new CustomerDetails();
-        details.setEmail(c.getEmail());
-        details.setFirstName(c.getFirstName());
-        details.setLastName(c.getLastName());
-        return details;
-    }
-
-    private CustomerSession getCustomerSession(HttpServletRequest requestIn) {
-        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
-        if (customerSessions.isEmpty()) {
-            return null;
-        }
-        return customerSessions.get(0);
     }
 
 }

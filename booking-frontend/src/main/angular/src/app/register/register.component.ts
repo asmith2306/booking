@@ -1,11 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {LoginService} from '../rest/login.service';
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from '../../../node_modules/@angular/common/http';
-import {MatDialog} from '../../../node_modules/@angular/material';
 import {RegistrationDetails} from '../models/RegistrationDetails';
-import {RegistrationService} from '../rest/registration.service';
+import {RegistrationService} from '../http/rest/registration.service';
 import {NgForm} from '../../../node_modules/@angular/forms';
 
 @Component({
@@ -29,7 +27,7 @@ export class RegisterComponent implements OnInit {
     onRegister() {
         this.registrationService.register(this.registrationDetails).subscribe(res => {
             this.snackBar.open("Registration complete", null, {
-                duration: 5000,
+                duration: 2000,
             });
             this.router.navigate(["login"]);
         }, (err: HttpErrorResponse) => {

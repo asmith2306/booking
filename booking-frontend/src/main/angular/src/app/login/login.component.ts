@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {LoginService} from '../rest/login.service';
+import {LoginService} from '../http/rest/login.service';
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from '../../../node_modules/@angular/common/http';
-import {MatDialog} from '../../../node_modules/@angular/material';
 
 @Component({
     selector: 'app-login',

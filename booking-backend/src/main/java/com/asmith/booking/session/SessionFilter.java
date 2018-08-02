@@ -41,8 +41,6 @@ public class SessionFilter implements Filter {
             return;
         }
         
-        
-
         fc.doFilter(request, response);
     }
 

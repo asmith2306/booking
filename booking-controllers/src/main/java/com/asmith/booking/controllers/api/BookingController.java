@@ -37,11 +37,6 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<List<Booking>> findAllCustomerBookings() {
-        return new ResponseEntity<>(bookingService.findAllCustomerBookings(), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     ResponseEntity<Booking> update(@PathVariable("id") String id, @RequestBody Booking booking) {
         return new ResponseEntity<>(bookingService.update(id, booking), HttpStatus.OK);

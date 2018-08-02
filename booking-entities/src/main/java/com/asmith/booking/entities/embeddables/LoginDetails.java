@@ -1,5 +1,6 @@
 package com.asmith.booking.entities.embeddables;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 
@@ -7,6 +8,7 @@ import javax.persistence.Embeddable;
  * @author Alan
  */
 @Embeddable
+@JsonIgnoreType
 public class LoginDetails implements Serializable {
 
     //this should be the customers email
@@ -34,6 +36,6 @@ public class LoginDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "CustomerLoginDetails{" + "userName=" + userName + ", password=" + password + '}';
+        return "LoginDetails{" + "userName=" + userName + ", password=" + password + '}';
     }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from '../rest/app.service';
+import {AppService} from '../http/rest/app.service';
 import {Router} from '../../../node_modules/@angular/router';
-import {CustomerDetails} from '../models/CustomerDetails';
+import {Customer} from '../models/Customer';
 
 @Component({
     selector: 'app-auth',
@@ -10,16 +10,12 @@ import {CustomerDetails} from '../models/CustomerDetails';
 })
 export class AuthComponent implements OnInit {
 
-    user: string = "";
-    haveUser: boolean;
+    activeCustomer: Customer;
 
     constructor(private appService: AppService, private router: Router) {}
 
     ngOnInit() {
-        this.appService.getUser().subscribe((res: CustomerDetails) => {
-            this.user = res.firstName + " " + res.lastName;
-            this.haveUser = true;
-        });
+        this.activeCustomer = this.appService.activeCustomer;
     }
 
     logout() {

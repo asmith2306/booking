@@ -1,11 +1,11 @@
 import {Room} from "./Room";
 
 export interface Booking {
-    id: number;
-    checkInDate: Date; 
+    id: string;
+    checkInDate: Date;
     checkOutDate: Date;
     rooms: Array<Room>;
-    numberOfAdults: number;
-    numberOfChildren: number;
+    numberOfAdults: string;
+    numberOfChildren: string;
 }
 

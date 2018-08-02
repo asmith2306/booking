@@ -4,19 +4,16 @@
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition in the component" -->
 
-        <!-- Name Column -->
         <ng-container matColumnDef="checkInDate">
             <mat-header-cell *matHeaderCellDef> Check In Date </mat-header-cell>
             <mat-cell *matCellDef="let booking"> {{booking.checkInDate}} </mat-cell>
         </ng-container>
 
-        <!-- Weight Column -->
         <ng-container matColumnDef="checkOutDate">
             <mat-header-cell *matHeaderCellDef> Check Out Date </mat-header-cell>
             <mat-cell *matCellDef="let booking"> {{booking.checkOutDate}} </mat-cell>
         </ng-container>
 
-        <!-- Symbol Column -->
         <ng-container matColumnDef="numberOfAdults">
             <mat-header-cell *matHeaderCellDef> # Adults </mat-header-cell>
             <mat-cell *matCellDef="let booking"> {{booking.numberOfAdults}} </mat-cell>
@@ -31,8 +28,7 @@
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let booking"> <mat-icon appClickableIndicator (click)="onClickEditBooking(booking.id)">mode_edit</mat-icon></mat-cell>
         </ng-container>
-        
-        
+
         <ng-container matColumnDef="delete">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let booking"> <mat-icon appClickableIndicator (click)="onClickDeleteBooking(booking.id)">delete</mat-icon></mat-cell>

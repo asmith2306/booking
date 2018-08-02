@@ -70,23 +70,23 @@ public class BookingService implements DomainService<Booking> {
     }
 
     @Override
-    public Booking update(String id, Booking booking) {
+    public Booking update(String id, Booking bookingIn) {
         Booking bookingToUpdate = bookingRepo.findById(Long.valueOf(id)).orElse(null);
 
-        bookingToUpdate.setCheckInDate(booking.getCheckInDate());
-        bookingToUpdate.setCheckOutDate(booking.getCheckOutDate());
-        bookingToUpdate.setNumberOfAdults(booking.getNumberOfAdults());
-        bookingToUpdate.setNumberOfChildren(booking.getNumberOfChildren());
+        bookingToUpdate.setCheckInDate(bookingIn.getCheckInDate());
+        bookingToUpdate.setCheckOutDate(bookingIn.getCheckOutDate());
+        bookingToUpdate.setNumberOfAdults(bookingIn.getNumberOfAdults());
+        bookingToUpdate.setNumberOfChildren(bookingIn.getNumberOfChildren());
 
         List<Room> roomsToUpdate = new ArrayList<>();
 
-        if (null != booking.getRooms()) {
+        if (null != bookingIn.getRooms()) {
             Room previousRoom = roomRepo.findRoomByBookingId(Long.valueOf(id));
             if (null != previousRoom) {
                 previousRoom.setBooking(null);
                 roomRepo.save(previousRoom);
             }
-            for (Room r : booking.getRooms()) {
+            for (Room r : bookingIn.getRooms()) {
                 Room room = roomRepo.findById(r.getId()).orElse(null);
                 room.setBooking(bookingToUpdate);
                 roomsToUpdate.add(room);
