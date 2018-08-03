@@ -1,7 +1,7 @@
 <div id="booking-card-container" fxLayout fxLayoutAlign="center center">
     <mat-card fxFlex="0 0 80" fxFlex.xs="0 0 95">
         <form (ngSubmit)="onSubmit()" #bookingForm="ngForm">
-            <div fxLayout fxLayout.xs="column" fxLayoutGap="5%">         
+            <div fxLayout fxLayout.lt-md="column" fxLayoutGap="5%">         
                 <mat-form-field >
                     <input matInput name="checkInDate" [(ngModel)]="booking.checkInDate"
                            [matDatepicker]="checkInDatepicker" placeholder="Check in date" required>
@@ -25,7 +25,7 @@
             </mat-form-field>       
         </div>
 
-        <div fxLayout fxLayout.xs="column" fxLayoutGap="5%">
+        <div fxLayout fxLayout.lt-md="column" fxLayoutGap="5%">
             <div fxFlex>
                 <mat-form-field>
                     <input matInput placeholder="Number of adults" name="numberOfAdults"
@@ -43,13 +43,9 @@
             </div>
         </div>
 
-        <div fxLayout fxLayoutGap="25px">
-            <div class="cancel-button">
+        <div fxLayout fxLayoutGap="25px" fxLayoutAlign="end">
                 <button mat-raised-button color="accent" type="button" (click)="cancelEdit()">Cancel</button>
-            </div>
-            <div class="submit-button">
                 <button mat-raised-button color="primary" type="submit" [disabled]="submitDisabled()">Submit</button>
-            </div>
         </div>
 
     </form>

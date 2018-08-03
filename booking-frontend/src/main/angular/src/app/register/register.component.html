@@ -36,9 +36,12 @@
                     </div>
                 </div>
             </mat-card-content>
-            <div fxLayout fxLayoutAlign="end center">
-                <button mat-raised-button class="registration-button" type="submit" color="warn" [disabled]="registrationDisabled()">Register</button>
+
+            <div fxLayout fxLayoutGap="25px" fxLayoutAlign="end center">
+                <button mat-raised-button color="accent" type="button" (click)="cancelRegistration()">Cancel</button>
+                <button mat-raised-button type="submit" color="primary" [disabled]="registrationDisabled()">Register</button>
             </div>
+
         </mat-card>
     </form>
 </div>
