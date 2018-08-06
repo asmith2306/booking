@@ -34,4 +34,10 @@ public enum RoomType {
     public String[] getAmenities() {
         return amenities;
     }
+
+    @Override
+    public String toString() {
+        return "RoomType{" + "name=" + name + ", price=" + price + ", amenities=" + amenities + '}';
+    }
+    
 }

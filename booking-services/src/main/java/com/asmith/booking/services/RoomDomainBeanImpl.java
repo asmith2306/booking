@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RoomDomainBeanImpl implements RoomDomainBean {
+
+    private static final Logger LOG = Logger.getLogger(RoomDomainBeanImpl.class.getName());
 
     @Autowired
     RoomRepository roomRepo;
@@ -40,8 +43,15 @@ public class RoomDomainBeanImpl implements RoomDomainBean {
     }
 
     @Override
-    public List<String> findAllRoomTypes() {
-        return roomRepo.findAllRoomTypes();
+    public List<RoomType> findAllRoomTypes() {
+        List<String> typeNames = roomRepo.findAllRoomTypes();
+        List<RoomType> roomTypes = new ArrayList<>();
+
+        for (String s : typeNames) {
+            roomTypes.add(RoomType.valueOf(s));
+        }
+
+        return roomTypes;
     }
 
     @Override
@@ -50,12 +60,12 @@ public class RoomDomainBeanImpl implements RoomDomainBean {
     }
 
     @Override
-    public List<String> findAvailableRoomTypes() {
+    public List<RoomType> findAvailableRoomTypes() {
         List<Room> allAvailableRooms = this.findAvailableRooms();
-        Set<String> availableRoomTypes = new HashSet<>();
+        Set<RoomType> availableRoomTypes = new HashSet<>();
 
         allAvailableRooms.forEach((r) -> {
-            availableRoomTypes.add(r.getRoomType().toString());
+            availableRoomTypes.add(r.getRoomType());
         });
         return new ArrayList<>(availableRoomTypes);
     }

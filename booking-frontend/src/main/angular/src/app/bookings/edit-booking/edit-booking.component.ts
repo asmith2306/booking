@@ -6,6 +6,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Room} from "../../models/Room";
 import {RoomsService} from "../../http/rest/rooms.service";
 import {AppService} from "../../http/rest/app.service";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {RoomDescriptionDialogComponent} from './room-description-dialog/room-description-dialog.component';
+import {RoomType} from '../../models/RoomType';
 
 @Component({
     selector: 'app-edit-booking',
@@ -15,20 +18,21 @@ import {AppService} from "../../http/rest/app.service";
 export class EditBookingComponent implements OnInit {
 
     booking: Booking;
-    allRoomTypes: Array<string> = new Array<string>();
-    availableRoomTypes: Array<string> = new Array<string>();
-    selectedRoomType: string = "";
+    allRoomTypes: Array<RoomType> = new Array<RoomType>();
+    availableRoomTypes: Array<RoomType> = new Array<RoomType>();
+    selectedRoomType: RoomType = new RoomType();
     fromCreate: boolean;
 
     constructor(private route: ActivatedRoute, private router: Router,
         private bookingsService: CustomerBookingsService, private snackBar: MatSnackBar,
-        private roomsService: RoomsService, private appService: AppService) {}
+        private roomsService: RoomsService, private appService: AppService,
+        private dialog: MatDialog) {}
 
     ngOnInit() {
         this.booking = this.route.snapshot.data["booking"]
         this.fromCreate = JSON.parse(this.route.snapshot.queryParamMap.get("fromCreate"));
         if (this.bookingHasRooms(this.booking)) {
-            this.selectedRoomType = this.booking.rooms[0].roomType.name;
+            this.selectedRoomType = this.booking.rooms[0].roomType;
         }
 
         this.allRoomTypes = this.route.snapshot.data["allRoomTypes"]
@@ -60,11 +64,12 @@ export class EditBookingComponent implements OnInit {
     }
 
     onSubmit() {
-        this.roomsService.getNext(this.selectedRoomType).subscribe((nextRoom: Room) => {
-            if (this.booking.rooms.length == 0 && nextRoom) {
+        this.roomsService.getNext(this.selectedRoomType.name).subscribe((nextRoom: Room) => {
+            debugger
+//            if (this.booking.rooms.length == 0 && nextRoom) {
                 this.booking.rooms = new Array<Room>();
                 this.booking.rooms.push(nextRoom);
-            }
+//            }
 
             this.bookingsService.update(this.appService.activeCustomer.id, this.booking).subscribe(booking => {
                 // show message and back to dashboard on success
@@ -75,9 +80,21 @@ export class EditBookingComponent implements OnInit {
 
     }
 
-    checkUnavailable(roomType: string) {
-        return !this.availableRoomTypes.includes(roomType);
+    checkUnavailable(roomType: RoomType): boolean {
+
+        this.allRoomTypes.forEach(room => {
+            this.availableRoomTypes.forEach(availableRoom => {
+                if (room.name === availableRoom.name) {
+                    return true;
+                }
+            })
+        });
+
+        return false;
     }
 
+    openRoomDescDialog() {
+        this.dialog.open(RoomDescriptionDialogComponent, {data: {rooms: this.allRoomTypes}});
+    }
 
 }

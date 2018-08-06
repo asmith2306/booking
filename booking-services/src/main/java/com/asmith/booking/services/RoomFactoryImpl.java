@@ -18,7 +18,7 @@ public class RoomFactoryImpl implements RoomFactory {
     @Override
     public Room getRoom(String type) {
         List<Room> availableRooms = roomBean.findAvailableRooms();
-        Optional<Room> nextType = availableRooms.stream().filter(room -> room.getRoomType().toString().equals(type)).findFirst();
+        Optional<Room> nextType = availableRooms.stream().filter(room -> room.getRoomType().name().equalsIgnoreCase(type)).findFirst();
 
         if (nextType.isPresent()) {
             return nextType.get();

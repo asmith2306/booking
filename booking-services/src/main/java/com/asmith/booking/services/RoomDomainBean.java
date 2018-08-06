@@ -1,6 +1,7 @@
 package com.asmith.booking.services;
 
 import com.asmith.booking.entities.Room;
+import com.asmith.booking.entities.embeddables.RoomType;
 import java.util.List;
 
 /**
@@ -8,11 +9,11 @@ import java.util.List;
  */
 public interface RoomDomainBean extends DomainService<Room> {
 
-    List<String> findAllRoomTypes();
+    List<RoomType> findAllRoomTypes();
 
     List<Room> findAvailableRooms();
 
-    List<String> findAvailableRoomTypes();
+    List<RoomType> findAvailableRoomTypes();
     
     Room next(String type);
 

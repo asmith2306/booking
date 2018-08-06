@@ -1,6 +1,7 @@
 package com.asmith.booking.controllers.api;
 
 import com.asmith.booking.entities.Room;
+import com.asmith.booking.entities.embeddables.RoomType;
 import com.asmith.booking.services.RoomDomainBean;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/availableTypes", method = RequestMethod.GET)
-    ResponseEntity<List<String>> availableTypes() {
+    ResponseEntity<List<RoomType>> availableTypes() {
         return new ResponseEntity<>(roomBean.findAvailableRoomTypes(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/types", method = RequestMethod.GET)
-    ResponseEntity<List<String>> types() {
+    ResponseEntity<List<RoomType>> types() {
         return new ResponseEntity<>(roomBean.findAllRoomTypes(), HttpStatus.OK);
     }
 

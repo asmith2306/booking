@@ -28,6 +28,7 @@ import {LoginService} from "./http/rest/login.service";
 import {BookingResolver} from "./bookings/resolvers/booking-resolver";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {HttpErrorInterceptor} from "./http/http-error.interceptor";
+import { RoomDescriptionDialogComponent } from './bookings/edit-booking/room-description-dialog/room-description-dialog.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import {HttpErrorInterceptor} from "./http/http-error.interceptor";
         EditBookingComponent,
         RegisterComponent,
         LoginComponent,
-        AuthComponent
+        AuthComponent,
+        RoomDescriptionDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -56,6 +58,7 @@ import {HttpErrorInterceptor} from "./http/http-error.interceptor";
             useClass: HttpErrorInterceptor,
             multi: true
         }],
+    entryComponents:[RoomDescriptionDialogComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
