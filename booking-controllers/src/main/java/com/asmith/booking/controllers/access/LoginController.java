@@ -1,5 +1,6 @@
 package com.asmith.booking.controllers.access;
 
+import com.asmith.booking.entities.Customer;
 import com.asmith.booking.entities.embeddables.LoginDetails;
 import com.asmith.booking.services.AccessService;
 import com.asmith.booking.services.SessionService;
@@ -35,8 +36,9 @@ public class LoginController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginDetails loginDetails) {
+
         // Check user name
-        if (!accessService.customerExists(loginDetails.getUserName())) {
+        if (accessService.customerExists(loginDetails.getUserName()).isEmpty()) {
             return new ResponseEntity("We cannot find an account with that e-mail address", HttpStatus.CONFLICT);
         }
 
@@ -45,9 +47,11 @@ public class LoginController {
             return new ResponseEntity("Your password is incorrect", HttpStatus.NOT_ACCEPTABLE);
         }
 
+        Customer customer = accessService.customerExists(loginDetails.getUserName()).get(0);
+
         // Check for an active session, delete any active session if an attempt to login is made
-        if (sessionService.hasActiveSession(request)) {
-            this.sessionService.deleteSession(request);
+        if (null != customer.getCustomerSession()) {
+            this.sessionService.deleteSession(customer.getCustomerSession());
         }
 
         sessionService.createSession(loginDetails, request);

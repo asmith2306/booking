@@ -1,12 +1,10 @@
 package com.asmith.booking.services;
 
 import com.asmith.booking.entities.Customer;
-import com.asmith.booking.entities.CustomerSession;
 import com.asmith.booking.entities.embeddables.LoginDetails;
 import com.asmith.booking.entities.embeddables.RegistrationDetails;
 import com.asmith.booking.repos.CustomerRepository;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,8 @@ public class AccessService {
     @Autowired
     private CustomerRepository customerRepo;
 
-    public boolean customerExists(String email) {
-        return !customerRepo.findByEmail(email).isEmpty();
+    public List<Customer> customerExists(String email) {
+        return customerRepo.findByEmail(email);
     }
 
     public void registerCustomer(RegistrationDetails registrationDetails) {

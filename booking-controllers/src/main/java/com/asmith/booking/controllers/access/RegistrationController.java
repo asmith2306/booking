@@ -27,7 +27,7 @@ public class RegistrationController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody RegistrationDetails registrationDetails) {
 
-        if (accessService.customerExists(registrationDetails.getEmail())) {
+        if (!accessService.customerExists(registrationDetails.getEmail()).isEmpty()) {
             return new ResponseEntity("Email already in use", HttpStatus.CONFLICT);
         }
 

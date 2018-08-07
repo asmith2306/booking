@@ -57,7 +57,6 @@ public class SessionService {
             return null;
         }
 
-        //requestIn.setAttribute("customer", customerRepository.findByCustomerSession(customerSession).get(0));
         customerSession.setLastAccessed(System.currentTimeMillis());
         customerSessionRepository.save(customerSession);
 
@@ -102,15 +101,17 @@ public class SessionService {
 
     public void deleteSession(HttpServletRequest requestIn) {
         CustomerSession customerSession = getCustomerSession(requestIn);
-        Customer customer = customerRepository.findByCustomerSession(customerSession).get(0);
-        customer.setCustomerSession(null);
-        customerRepository.save(customer);
-        customerSessionRepository.delete(customerSession);
-    }
+        List<Customer> customers = customerRepository.findByCustomerSession(customerSession);
 
-    public boolean hasActiveSession(HttpServletRequest requestIn) {
-        List<CustomerSession> customerSessions = customerSessionRepository.findBySessionId(getJSessionId(requestIn));
-        return !customerSessions.isEmpty() && customerSessions.get(0).getSessionId().equals(getJSessionId(requestIn));
+        // if there are no customers for this session it's a dead session so delete it
+        if (customers.isEmpty()) {
+            customerSessionRepository.delete(customerSession);
+            return;
+        }
+
+        customers.get(0).setCustomerSession(null);
+        customerRepository.save(customers.get(0));
+        customerSessionRepository.delete(customerSession);
     }
 
     public Customer getUser(HttpServletRequest requestIn, HttpServletResponse responseIn) {
