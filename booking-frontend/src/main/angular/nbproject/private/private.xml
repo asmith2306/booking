@@ -3,30 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/bookings-list/bookings-list.component.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app.module.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app.component.html</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/login/login.component.ts</file>
+            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/auth.component.html</file>
             <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/auth.guard.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/edit-booking/edit-booking.component.scss</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/register/register.component.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/available-room-types-resolver.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/bookings-list/bookings-list.component.html</file>
+            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app.module.ts</file>
             <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/app-routing.module.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/http/rest/registration.service.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/edit-booking/edit-booking.component.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/available-rooms-resolver.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/edit-booking/edit-booking.component.html</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/bookings-resolver.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/register/register.component.html</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/http/rest/app.service.spec.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/http/rest/app.service.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/auth/auth.resolve.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/booking-resolver.ts</file>
+            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/available-room-types-resolver.ts</file>
             <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/resolvers/all-room-types-resolver.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/http/http-error-handler.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/http/http-error.interceptor.ts</file>
-            <file>file:/C:/Users/asmith/Documents/NetBeansProjects/booking/booking-frontend/src/main/angular/src/app/bookings/bookings-list/bookings-list.component.css</file>
         </group>
     </open-files>
 </project-private>

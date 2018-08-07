@@ -10,7 +10,7 @@ import {RoomsService} from "../../http/rest/rooms.service";
 import {RoomType} from '../../models/RoomType';
 
 @Injectable()
-export class AllRoomTypesResolver implements Resolve<Array<string>> {
+export class AllRoomTypesResolver implements Resolve<Array<RoomType>> {
     constructor(private roomService: RoomsService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<RoomType>> {

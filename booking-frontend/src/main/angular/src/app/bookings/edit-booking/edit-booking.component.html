@@ -17,7 +17,7 @@
                 </mat-form-field>
 
                 <mat-form-field fxFlex="0 0 20">
-                    <mat-select placeholder="Room type" [(value)]="selectedRoomType.name">
+                    <mat-select placeholder="Room type" [(value)]="selectedRoomType.name" required>
                         <mat-option *ngFor="let roomType of allRoomTypes" [disabled]="checkUnavailable(roomType)" [value]="roomType.name">
                             {{ roomType.name }}
                     </mat-option>

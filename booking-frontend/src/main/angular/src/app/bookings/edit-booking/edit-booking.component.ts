@@ -55,7 +55,8 @@ export class EditBookingComponent implements OnInit {
     submitDisabled() {
         let disabled = this.booking.checkInDate == null ||
             this.booking.checkOutDate == null ||
-            (this.booking.numberOfAdults == null || this.booking.numberOfAdults.length < 1);
+            (this.booking.numberOfAdults == null || this.booking.numberOfAdults.length < 1)
+            || this.selectedRoomType.name == null;
 
         if (!disabled) {
             disabled = this.booking.checkInDate > this.booking.checkOutDate
@@ -65,11 +66,8 @@ export class EditBookingComponent implements OnInit {
 
     onSubmit() {
         this.roomsService.getNext(this.selectedRoomType.name).subscribe((nextRoom: Room) => {
-            debugger
-//            if (this.booking.rooms.length == 0 && nextRoom) {
-                this.booking.rooms = new Array<Room>();
-                this.booking.rooms.push(nextRoom);
-//            }
+            this.booking.rooms = new Array<Room>();
+            this.booking.rooms.push(nextRoom);
 
             this.bookingsService.update(this.appService.activeCustomer.id, this.booking).subscribe(booking => {
                 // show message and back to dashboard on success
