@@ -1,7 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {RoomsService} from '../../../http/rest/rooms.service';
 import {RoomType} from '../../../models/RoomType';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource} from '@angular/material';
 
 @Component({
     selector: 'app-room-description-dialog',
@@ -12,13 +12,15 @@ export class RoomDescriptionDialogComponent implements OnInit {
 
     allRoomTypes: Array<RoomType>;
 
+    displayedColumns = ['roomType', 'price', 'amenities'];
+    dataSource: MatTableDataSource<RoomType>;
+
     constructor(public dialogRef: MatDialogRef<RoomDescriptionDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: Array<RoomType>) {}
 
     ngOnInit() {
-        
         this.allRoomTypes = this.data["rooms"];
-        console.log(this.allRoomTypes)
+        this.dataSource = new MatTableDataSource<RoomType>(this.allRoomTypes);
     }
 
 }
