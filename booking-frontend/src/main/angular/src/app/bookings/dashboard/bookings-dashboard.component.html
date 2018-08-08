@@ -1,5 +1,20 @@
 <app-bookings-list (bookingDeleted)="bookingDeleted($event)" [bookings]="bookings"></app-bookings-list>
 
+<mat-button-toggle-group #group="matButtonToggleGroup" (change)="doChange($event)">
+    <mat-button-toggle value="left">
+        <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="center">
+        <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="right">
+        <mat-icon>format_align_right</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+<div>Selected component:</div>
+<ng-template dynamicHost></ng-template>
+
+
 <div class="add-booking-button" matTooltip="{{addButtonTooltipText}}">
     <button (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" matTooltipPosition="above" mat-fab (click)="addBooking()" disabled="{{!roomsAvailable}}">
         <mat-icon [ngClass]="{'button-animation-in': doEnterAnimation, 'button-animation-out': doExitAnimation }">add</mat-icon>

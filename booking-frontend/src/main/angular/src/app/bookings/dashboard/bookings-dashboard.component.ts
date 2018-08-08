@@ -5,6 +5,11 @@ import {CustomerBookingsService} from "../../http/rest/customer.bookings.service
 import {RoomsService} from "../../http/rest/rooms.service";
 import {AppService} from "../../http/rest/app.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatButtonToggleChange} from "@angular/material/button-toggle";
+import {ViewChild} from "@angular/core";
+import {DynamicHostDirective} from "./dynamic.host.directive";
+import {ComponentFactoryResolver} from "@angular/core";
+import {LeftComponent} from "./left/left.component";
 
 @Component({
     selector: 'app-bookings-dashboard',
@@ -12,7 +17,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     styleUrls: ['./bookings-dashboard.component.css']
 })
 export class BookingsDashboardComponent implements OnInit {
-    
+
+    @ViewChild('DynamicHostDirective')
+    dynamicHost: DynamicHostDirective;
+
     bookings: Array<Booking>;
     roomsAvailable: boolean;
     addButtonTooltipText: string
@@ -21,7 +29,8 @@ export class BookingsDashboardComponent implements OnInit {
 
     constructor(private router: Router, private route: ActivatedRoute,
         private bookingsService: CustomerBookingsService, private roomsService: RoomsService,
-        private appService: AppService, private snackBar: MatSnackBar) {}
+        private appService: AppService, private snackBar: MatSnackBar,
+        private componentFactoryResolver: ComponentFactoryResolver) {}
 
     ngOnInit() {
         this.bookings = this.route.snapshot.data["bookings"];
@@ -34,6 +43,8 @@ export class BookingsDashboardComponent implements OnInit {
                 this.addButtonTooltipText = "Booked up";
             }
         })
+        
+        console.log(this.dynamicHost)
     }
 
     addBooking() {
@@ -65,4 +76,12 @@ export class BookingsDashboardComponent implements OnInit {
         this.doExitAnimation = true;
     }
 
+    doChange(change: MatButtonToggleChange) {
+        console.log(change.value)
+
+        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(LeftComponent);
+        let viewContainerRef = this.dynamicHost.viewContainerRef;
+        viewContainerRef.clear();
+        let componentRef = viewContainerRef.createComponent(componentFactory);
+    }
 }

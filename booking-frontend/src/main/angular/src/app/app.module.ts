@@ -29,6 +29,9 @@ import {BookingResolver} from "./bookings/resolvers/booking-resolver";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {HttpErrorInterceptor} from "./http/http-error.interceptor";
 import { RoomDescriptionDialogComponent } from './bookings/edit-booking/room-description-dialog/room-description-dialog.component';
+import { LeftComponent } from './bookings/dashboard/left/left.component';
+import { CenterComponent } from './bookings/dashboard/center/center.component';
+import { RightComponent } from './bookings/dashboard/right/right.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +43,10 @@ import { RoomDescriptionDialogComponent } from './bookings/edit-booking/room-des
         RegisterComponent,
         LoginComponent,
         AuthComponent,
-        RoomDescriptionDialogComponent
+        RoomDescriptionDialogComponent,
+        LeftComponent,
+        CenterComponent,
+        RightComponent
     ],
     imports: [
         BrowserModule,
@@ -58,7 +64,7 @@ import { RoomDescriptionDialogComponent } from './bookings/edit-booking/room-des
             useClass: HttpErrorInterceptor,
             multi: true
         }],
-    entryComponents:[RoomDescriptionDialogComponent],
+    entryComponents:[RoomDescriptionDialogComponent, LeftComponent, CenterComponent, RightComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
