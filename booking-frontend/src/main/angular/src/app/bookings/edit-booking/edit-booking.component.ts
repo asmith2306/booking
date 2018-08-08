@@ -6,7 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Room} from "../../models/Room";
 import {RoomsService} from "../../http/rest/rooms.service";
 import {AppService} from "../../http/rest/app.service";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {RoomDescriptionDialogComponent} from './room-description-dialog/room-description-dialog.component';
 import {RoomType} from '../../models/RoomType';
 
@@ -37,11 +37,6 @@ export class EditBookingComponent implements OnInit {
 
         this.allRoomTypes = this.route.snapshot.data["allRoomTypes"]
         this.availableRooms = this.route.snapshot.data["availableRooms"]
-        console.log(this.availableRooms)
-    }
-
-    private bookingHasRooms(booking: Booking): boolean {
-        return booking.rooms.length > 0;
     }
 
     cancelEdit() {
@@ -87,4 +82,7 @@ export class EditBookingComponent implements OnInit {
         this.dialog.open(RoomDescriptionDialogComponent, {data: {rooms: this.allRoomTypes}});
     }
 
+    private bookingHasRooms(booking: Booking): boolean {
+        return booking.rooms.length > 0;
+    }
 }

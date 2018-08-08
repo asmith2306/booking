@@ -3,3 +3,43 @@
     right: 25px;
     bottom: 25px;
 }
+
+.button-animation-in{
+    animation: button-animation-in-frames linear .5s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+}
+
+@keyframes button-animation-in-frames{
+    0% {
+        transform:  rotate(0deg) ;
+    }
+    50% {
+        transform:  rotate(90deg) ;
+    }
+    100% {
+        transform:  rotate(90deg) ;
+    }
+}
+
+.button-animation-out{
+    animation: button-animation-out-frames linear .5s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+}
+
+@keyframes button-animation-out-frames{
+    0% {
+        transform:  rotate(90deg) ;
+    }
+    50% {
+        transform:  rotate(0deg) ;
+    }
+    100% {
+        transform:  rotate(0deg) ;
+    }
+}
+
+
+
+

@@ -3,8 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Booking} from "../../models/Booking";
 import {CustomerBookingsService} from "../../http/rest/customer.bookings.service";
 import {RoomsService} from "../../http/rest/rooms.service";
-import {Room} from "../../models/Room";
-import {Customer} from "../../models/Customer";
 import {AppService} from "../../http/rest/app.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -14,9 +12,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     styleUrls: ['./bookings-dashboard.component.css']
 })
 export class BookingsDashboardComponent implements OnInit {
+    
     bookings: Array<Booking>;
     roomsAvailable: boolean;
     addButtonTooltipText: string
+    doEnterAnimation: boolean;
+    doExitAnimation: boolean;
 
     constructor(private router: Router, private route: ActivatedRoute,
         private bookingsService: CustomerBookingsService, private roomsService: RoomsService,
@@ -52,6 +53,16 @@ export class BookingsDashboardComponent implements OnInit {
     bookingDeleted(event) {
         this.roomsAvailable = true;
         this.addButtonTooltipText = "Add booking";
+    }
+
+    mouseEnter() {
+        this.doEnterAnimation = true;
+        this.doExitAnimation = false;
+    }
+
+    mouseLeave() {
+        this.doEnterAnimation = false;
+        this.doExitAnimation = true;
     }
 
 }
