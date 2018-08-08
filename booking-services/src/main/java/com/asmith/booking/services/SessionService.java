@@ -26,18 +26,14 @@ public class SessionService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionService.class.getName());
 
-    private final CustomerRepository customerRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
-    private final CustomerSessionRepository customerSessionRepository;
+    @Autowired
+    private CustomerSessionRepository customerSessionRepository;
 
     @Value("${user.session.timeout}")
     private String sessionTimeout;
-
-    @Autowired
-    public SessionService(CustomerRepository customerRepository, CustomerSessionRepository customerSessionRepository) {
-        this.customerRepository = customerRepository;
-        this.customerSessionRepository = customerSessionRepository;
-    }
 
     public Customer checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);
