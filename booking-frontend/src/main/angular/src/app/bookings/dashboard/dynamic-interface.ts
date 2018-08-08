@@ -1,4 +1,2 @@
-export interface Dynamic{
-    
-}
+export interface DynamicComponent{}   
 

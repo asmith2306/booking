@@ -28,10 +28,11 @@ import {LoginService} from "./http/rest/login.service";
 import {BookingResolver} from "./bookings/resolvers/booking-resolver";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {HttpErrorInterceptor} from "./http/http-error.interceptor";
-import { RoomDescriptionDialogComponent } from './bookings/edit-booking/room-description-dialog/room-description-dialog.component';
-import { LeftComponent } from './bookings/dashboard/left/left.component';
-import { CenterComponent } from './bookings/dashboard/center/center.component';
-import { RightComponent } from './bookings/dashboard/right/right.component';
+import {RoomDescriptionDialogComponent} from './bookings/edit-booking/room-description-dialog/room-description-dialog.component';
+import {LeftComponent} from './bookings/dashboard/left/left.component';
+import {CenterComponent} from './bookings/dashboard/center/center.component';
+import {RightComponent} from './bookings/dashboard/right/right.component';
+import {DynamicHostDirective} from './bookings/dashboard/dynamic.host.directive'
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { RightComponent } from './bookings/dashboard/right/right.component';
         RoomDescriptionDialogComponent,
         LeftComponent,
         CenterComponent,
-        RightComponent
+        RightComponent,
+        DynamicHostDirective
     ],
     imports: [
         BrowserModule,
@@ -64,7 +66,7 @@ import { RightComponent } from './bookings/dashboard/right/right.component';
             useClass: HttpErrorInterceptor,
             multi: true
         }],
-    entryComponents:[RoomDescriptionDialogComponent, LeftComponent, CenterComponent, RightComponent],
+    entryComponents: [RoomDescriptionDialogComponent, LeftComponent, CenterComponent, RightComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

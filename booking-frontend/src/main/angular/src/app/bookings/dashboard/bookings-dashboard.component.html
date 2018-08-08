@@ -12,8 +12,7 @@
     </mat-button-toggle>
 </mat-button-toggle-group>
 <div>Selected component:</div>
-<ng-template dynamicHost></ng-template>
-
+<ng-template dynamic-host></ng-template>
 
 <div class="add-booking-button" matTooltip="{{addButtonTooltipText}}">
     <button (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" matTooltipPosition="above" mat-fab (click)="addBooking()" disabled="{{!roomsAvailable}}">
