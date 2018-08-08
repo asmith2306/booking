@@ -24,14 +24,18 @@ public class AuthController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthController.class.getName());
 
-    @Autowired
-    private SessionService sessionService;
+    private final SessionService sessionService;
+
+    private final HttpServletRequest request;
+
+    private final HttpServletResponse response;
 
     @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
-    private HttpServletResponse response;
+    public AuthController(SessionService sessionService, HttpServletRequest request, HttpServletResponse response) {
+        this.sessionService = sessionService;
+        this.request = request;
+        this.response = response;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<Customer> auth() {
@@ -45,18 +49,5 @@ public class AuthController {
 
         return new ResponseEntity(customer, HttpStatus.OK);
     }
-//
-//    @RequestMapping(value = "/user", method = RequestMethod.GET)
-//    public ResponseEntity<Customer> user() {
-//        HttpServletRequest req = (HttpServletRequest) request;
-//        HttpServletResponse resp = (HttpServletResponse) response;
-//        Customer customer = sessionService.getUser(req, resp);
-//
-//        if (resp.getStatus() != HttpStatus.OK.value()) {
-//            return new ResponseEntity(new TextResponse("Unauthorised"), HttpStatus.UNAUTHORIZED);
-//        }
-//
-//        return new ResponseEntity(customer, HttpStatus.OK);
-//    }
 
 }

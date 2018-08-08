@@ -18,21 +18,25 @@ import org.springframework.stereotype.Service;
  * @author asmith
  */
 @Service
-public class BookingService implements DomainService<Booking> {
+public class BookingService implements BaseEntityService<Booking> {
 
     private static final Logger LOG = LoggerFactory.getLogger(BookingService.class.getName());
 
-    @Autowired
-    BookingRepository bookingRepo;
+    private final BookingRepository bookingRepo;
+
+    private final CustomerRepository customerRepository;
+
+    private final RoomRepository roomRepo;
+
+    private final HttpServletRequest request;
 
     @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    RoomRepository roomRepo;
-
-    @Autowired
-    private HttpServletRequest request;
+    public BookingService(BookingRepository bookingRepo, CustomerRepository customerRepository, RoomRepository roomRepo, HttpServletRequest request) {
+        this.bookingRepo = bookingRepo;
+        this.customerRepository = customerRepository;
+        this.roomRepo = roomRepo;
+        this.request = request;
+    }
 
     @Override
     public Booking create() {
@@ -65,7 +69,7 @@ public class BookingService implements DomainService<Booking> {
     }
 
     @Override
-    public Booking find(String id) {
+    public Booking read(String id) {
         return bookingRepo.findById(Long.valueOf(id)).orElse(null);
     }
 
@@ -101,11 +105,11 @@ public class BookingService implements DomainService<Booking> {
     @Override
     public void delete(String id) {
         Customer customer = (Customer) request.getAttribute("customer");
-        
+
         Booking bookingToDelete = bookingRepo.findById(Long.valueOf(id)).orElse(null);
-        
+
         customer.getBookings().remove(bookingToDelete);
-        
+
         for (Room r : bookingToDelete.getRooms()) {
             Room room = roomRepo.findById(r.getId()).orElse(null);
             room.setBooking(null);

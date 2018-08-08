@@ -2,7 +2,7 @@ package com.asmith.booking.controllers.api;
 
 import com.asmith.booking.entities.Room;
 import com.asmith.booking.entities.embeddables.RoomType;
-import com.asmith.booking.services.RoomDomainBean;
+import com.asmith.booking.services.RoomService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,37 +20,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/rooms")
 public class RoomController {
 
+    private final RoomService roomService;
+
     @Autowired
-    RoomDomainBean roomBean;
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
 
     @RequestMapping(value = "/next", method = RequestMethod.GET)
     ResponseEntity<Room> next(@RequestParam("type") String type) {
-        return new ResponseEntity<>(roomBean.next(type), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.next(type), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     ResponseEntity<Room> read(@PathVariable("id") String id) {
-        return new ResponseEntity<>(roomBean.find(id), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.find(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/available", method = RequestMethod.GET)
     ResponseEntity<List<Room>> available() {
-        return new ResponseEntity<>(roomBean.findAvailableRooms(), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/availableTypes", method = RequestMethod.GET)
-    ResponseEntity<List<RoomType>> availableTypes() {
-        return new ResponseEntity<>(roomBean.findAvailableRoomTypes(), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.findAvailableRooms(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/types", method = RequestMethod.GET)
     ResponseEntity<List<RoomType>> types() {
-        return new ResponseEntity<>(roomBean.findAllRoomTypes(), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.findAllRoomTypes(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<List<Room>> readAll() {
-        return new ResponseEntity<>(roomBean.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.findAll(), HttpStatus.OK);
     }
 
 }

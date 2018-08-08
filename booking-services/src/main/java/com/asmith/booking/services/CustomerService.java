@@ -15,16 +15,20 @@ import org.springframework.stereotype.Service;
  * @author asmith
  */
 @Service
-public class CustomerService implements DomainService<Customer> {
+public class CustomerService implements BaseEntityService<Customer> {
+
+    private final CustomerRepository customerRepository;
+
+    private final BookingRepository bookingRepository;
+
+    private final RoomRepository roomRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private BookingRepository bookingRepository;
-
-    @Autowired
-    private RoomRepository roomRepository;
+    public CustomerService(CustomerRepository customerRepository, BookingRepository bookingRepository, RoomRepository roomRepository) {
+        this.customerRepository = customerRepository;
+        this.bookingRepository = bookingRepository;
+        this.roomRepository = roomRepository;
+    }
 
     @Override
     public Customer create() {
@@ -32,7 +36,7 @@ public class CustomerService implements DomainService<Customer> {
     }
 
     @Override
-    public Customer find(String id) {
+    public Customer read(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

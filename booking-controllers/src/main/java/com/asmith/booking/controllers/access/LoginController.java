@@ -25,14 +25,18 @@ public class LoginController {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class.getName());
 
-    @Autowired
-    private SessionService sessionService;
+    private final SessionService sessionService;
+
+    private final AccessService accessService;
+
+    private final HttpServletRequest request;
 
     @Autowired
-    private AccessService accessService;
-
-    @Autowired
-    private HttpServletRequest request;
+    public LoginController(SessionService sessionService, AccessService accessService, HttpServletRequest request) {
+        this.sessionService = sessionService;
+        this.accessService = accessService;
+        this.request = request;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginDetails loginDetails) {

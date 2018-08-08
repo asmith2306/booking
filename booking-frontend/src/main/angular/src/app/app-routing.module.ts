@@ -32,7 +32,7 @@ const routes: Routes = [
                 resolve: {
                     booking: BookingResolver,
                     allRoomTypes: AllRoomTypesResolver,
-                    availableRoomTypes: AvailableRoomTypesResolver
+                    availableRooms: AvailableRoomsResolver
                 }
             }
         ]

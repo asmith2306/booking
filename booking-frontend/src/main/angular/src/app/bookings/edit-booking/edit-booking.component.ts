@@ -19,7 +19,7 @@ export class EditBookingComponent implements OnInit {
 
     booking: Booking;
     allRoomTypes: Array<RoomType> = new Array<RoomType>();
-    availableRoomTypes: Array<RoomType> = new Array<RoomType>();
+    availableRooms: Array<Room> = new Array<Room>();
     selectedRoomType: RoomType = new RoomType();
     fromCreate: boolean;
 
@@ -36,7 +36,8 @@ export class EditBookingComponent implements OnInit {
         }
 
         this.allRoomTypes = this.route.snapshot.data["allRoomTypes"]
-        this.availableRoomTypes = this.route.snapshot.data["availableRoomTypes"]
+        this.availableRooms = this.route.snapshot.data["availableRooms"]
+        console.log(this.availableRooms)
     }
 
     private bookingHasRooms(booking: Booking): boolean {
@@ -79,16 +80,7 @@ export class EditBookingComponent implements OnInit {
     }
 
     checkUnavailable(roomType: RoomType): boolean {
-
-        this.allRoomTypes.forEach(room => {
-            this.availableRoomTypes.forEach(availableRoom => {
-                if (room.name === availableRoom.name) {
-                    return true;
-                }
-            })
-        });
-
-        return false;
+        return !this.availableRooms.some(room => room.roomType.name === roomType.name);
     }
 
     openRoomDescDialog() {

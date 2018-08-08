@@ -2,7 +2,6 @@ package com.asmith.booking.services;
 
 import com.asmith.booking.entities.Customer;
 import com.asmith.booking.entities.CustomerSession;
-import com.asmith.booking.entities.embeddables.CustomerDetails;
 import com.asmith.booking.entities.embeddables.LoginDetails;
 import com.asmith.booking.repos.CustomerRepository;
 import com.asmith.booking.repos.CustomerSessionRepository;
@@ -27,14 +26,18 @@ public class SessionService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SessionService.class.getName());
 
-    @Autowired
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    CustomerSessionRepository customerSessionRepository;
+    private final CustomerSessionRepository customerSessionRepository;
 
     @Value("${user.session.timeout}")
     private String sessionTimeout;
+
+    @Autowired
+    public SessionService(CustomerRepository customerRepository, CustomerSessionRepository customerSessionRepository) {
+        this.customerRepository = customerRepository;
+        this.customerSessionRepository = customerSessionRepository;
+    }
 
     public Customer checkSession(HttpServletRequest requestIn, HttpServletResponse responseIn) {
         HttpSession session = requestIn.getSession(false);

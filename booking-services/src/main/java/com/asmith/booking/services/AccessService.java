@@ -14,8 +14,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccessService {
 
+    private final CustomerRepository customerRepo;
+
     @Autowired
-    private CustomerRepository customerRepo;
+    public AccessService(CustomerRepository customerRepo) {
+        this.customerRepo = customerRepo;
+    }
 
     public List<Customer> customerExists(String email) {
         return customerRepo.findByEmail(email);

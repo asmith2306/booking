@@ -1,5 +1,5 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import 'assets/scss/app-theme.scss';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 .mat-simple-snackbar{
     display: block !important;

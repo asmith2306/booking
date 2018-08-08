@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/bookings")
 public class BookingController {
 
+    private final BookingService bookingService;
+
     @Autowired
-    private BookingService bookingService;
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<Booking> create(@RequestBody Booking booking) {
@@ -29,7 +33,7 @@ public class BookingController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     ResponseEntity<Booking> find(@PathVariable("id") String id) {
-        return new ResponseEntity<>(bookingService.find(id), HttpStatus.OK);
+        return new ResponseEntity<>(bookingService.read(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)

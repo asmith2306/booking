@@ -21,8 +21,12 @@ public class RegistrationController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class.getName());
 
+    private final AccessService accessService;
+
     @Autowired
-    private AccessService accessService;
+    public RegistrationController(AccessService accessService) {
+        this.accessService = accessService;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody RegistrationDetails registrationDetails) {

@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/logout")
 public class LogoutController {
 
-    @Autowired
-    private SessionService sessionService;
+    private final SessionService sessionService;
+
+    private final HttpServletRequest request;
 
     @Autowired
-    private HttpServletRequest request;
+    public LogoutController(SessionService sessionService, HttpServletRequest request) {
+        this.sessionService = sessionService;
+        this.request = request;
+    }
 
     @RequestMapping(value = "")
     public ResponseEntity<TextResponse> logout() {
